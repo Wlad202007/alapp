@@ -50,12 +50,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li v-if="$can('message_access')">
-                        <router-link :to="{ name: 'messages.index' }">
-                            <i class="fa fa-envelope-o"></i>
-                            <span>@lang('quickadmin.messages.title')</span>
-                        </router-link>
-                    </li>
+                    {{--<li v-if="$can('message_access')">--}}
+                        {{--<router-link :to="{ name: 'messages.index' }">--}}
+                            {{--<i class="fa fa-envelope-o"></i>--}}
+                            {{--<span>@lang('quickadmin.messages.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
                     <li v-if="$can('event_access')">
                         <router-link :to="{ name: 'events.index' }">
                             <i class="fa fa-briefcase"></i>
@@ -68,24 +68,24 @@
                             <span>@lang('quickadmin.sessions.title')</span>
                         </router-link>
                     </li>
-                    <li v-if="$can('rate_access')">
-                        <router-link :to="{ name: 'rates.index' }">
-                            <i class="fa fa-gears"></i>
-                            <span>@lang('quickadmin.rate.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('answer_access')">
-                        <router-link :to="{ name: 'answers.index' }">
-                            <i class="fa fa-gears"></i>
-                            <span>@lang('quickadmin.answers.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('agenda_access')">
-                        <router-link :to="{ name: 'agendas.index' }">
-                            <i class="fa fa-clock-o"></i>
-                            <span>@lang('quickadmin.agendas.title')</span>
-                        </router-link>
-                    </li>
+                    {{--<li v-if="$can('rate_access')">--}}
+                        {{--<router-link :to="{ name: 'rates.index' }">--}}
+                            {{--<i class="fa fa-gears"></i>--}}
+                            {{--<span>@lang('quickadmin.rate.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('answer_access')">--}}
+                        {{--<router-link :to="{ name: 'answers.index' }">--}}
+                            {{--<i class="fa fa-gears"></i>--}}
+                            {{--<span>@lang('quickadmin.answers.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('agenda_access')">--}}
+                        {{--<router-link :to="{ name: 'agendas.index' }">--}}
+                            {{--<i class="fa fa-clock-o"></i>--}}
+                            {{--<span>@lang('quickadmin.agendas.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
                     <li v-if="$can('sponsor_access')">
                         <router-link :to="{ name: 'sponsors.index' }">
                             <i class="fa fa-flag"></i>
@@ -104,42 +104,42 @@
                             <span>@lang('quickadmin.posts.title')</span>
                         </router-link>
                     </li>
-                    <li v-if="$can('like_access')">
-                        <router-link :to="{ name: 'likes.index' }">
-                            <i class="fa fa-thumbs-o-up"></i>
-                            <span>@lang('quickadmin.likes.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('comment_access')">
-                        <router-link :to="{ name: 'comments.index' }">
-                            <i class="fa fa-commenting"></i>
-                            <span>@lang('quickadmin.comments.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('note_access')">
-                        <router-link :to="{ name: 'notes.index' }">
-                            <i class="fa fa-copy"></i>
-                            <span>@lang('quickadmin.notes.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('planner_access')">
-                        <router-link :to="{ name: 'planners.index' }">
-                            <i class="fa fa-arrow-circle-o-right"></i>
-                            <span>@lang('quickadmin.planners.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('users_like_access')">
-                        <router-link :to="{ name: 'users_likes.index' }">
-                            <i class="fa fa-star-half-o"></i>
-                            <span>@lang('quickadmin.users-likes.title')</span>
-                        </router-link>
-                    </li>
-                    <li v-if="$can('card_access')">
-                        <router-link :to="{ name: 'cards.index' }">
-                            <i class="fa fa-address-card-o"></i>
-                            <span>@lang('quickadmin.cards.title')</span>
-                        </router-link>
-                    </li>
+                    {{--<li v-if="$can('like_access')">--}}
+                        {{--<router-link :to="{ name: 'likes.index' }">--}}
+                            {{--<i class="fa fa-thumbs-o-up"></i>--}}
+                            {{--<span>@lang('quickadmin.likes.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('comment_access')">--}}
+                        {{--<router-link :to="{ name: 'comments.index' }">--}}
+                            {{--<i class="fa fa-commenting"></i>--}}
+                            {{--<span>@lang('quickadmin.comments.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('note_access')">--}}
+                        {{--<router-link :to="{ name: 'notes.index' }">--}}
+                            {{--<i class="fa fa-copy"></i>--}}
+                            {{--<span>@lang('quickadmin.notes.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('planner_access')">--}}
+                        {{--<router-link :to="{ name: 'planners.index' }">--}}
+                            {{--<i class="fa fa-arrow-circle-o-right"></i>--}}
+                            {{--<span>@lang('quickadmin.planners.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('users_like_access')">--}}
+                        {{--<router-link :to="{ name: 'users_likes.index' }">--}}
+                            {{--<i class="fa fa-star-half-o"></i>--}}
+                            {{--<span>@lang('quickadmin.users-likes.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
+                    {{--<li v-if="$can('card_access')">--}}
+                        {{--<router-link :to="{ name: 'cards.index' }">--}}
+                            {{--<i class="fa fa-address-card-o"></i>--}}
+                            {{--<span>@lang('quickadmin.cards.title')</span>--}}
+                        {{--</router-link>--}}
+                    {{--</li>--}}
                     <li v-if="$can('evaluation_access')">
                         <router-link :to="{ name: 'evaluations.index' }">
                             <i class="fa fa-star"></i>
