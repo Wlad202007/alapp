@@ -13096,6 +13096,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -13109,7 +13120,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['storeData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to', 'fetchUsersAll', 'fetchEventsAll']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['storeData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to', 'setDay', 'fetchUsersAll', 'fetchEventsAll']), {
     updateUser: function updateUser(value) {
       this.setUser(value);
     },
@@ -13149,6 +13160,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateTime_to: function updateTime_to(e) {
       this.setTime_to(e.target.value);
+    },
+    updateDay: function updateDay(e) {
+      this.setDay(e.target.value);
     },
     updateQuestion: function updateQuestion(e) {
       this.setQuestion(e.target.value);
@@ -13535,6 +13549,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         field: 'time_to',
         sortable: true
       }, {
+        title: 'Day',
+        field: 'day',
+        sortable: true
+      }, {
         title: 'Question',
         field: 'question',
         sortable: true
@@ -13851,6 +13869,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'module'],
@@ -13865,7 +13894,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['storeData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to', 'fetchUsersAll', 'fetchEventsAll']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['storeData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to', 'setDay', 'fetchUsersAll', 'fetchEventsAll']), {
     updateUser: function updateUser(value) {
       this.setUser(value);
     },
@@ -13912,6 +13941,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateTime_to: function updateTime_to(e) {
       this.setTime_to(e.target.value);
+    },
+    updateDay: function updateDay(e) {
+      this.setDay(e.target.value);
     },
     updateQuestion: function updateQuestion(e) {
       this.setQuestion(e.target.value);
@@ -14093,6 +14125,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -14112,7 +14155,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.fetchData(this.$route.params.id);
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['fetchData', 'updateData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['fetchData', 'updateData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to', 'setDay']), {
     updateUser: function updateUser(value) {
       this.setUser(value);
     },
@@ -14152,6 +14195,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateTime_to: function updateTime_to(e) {
       this.setTime_to(e.target.value);
+    },
+    updateDay: function updateDay(e) {
+      this.setDay(e.target.value);
     },
     updateQuestion: function updateQuestion(e) {
       this.setQuestion(e.target.value);
@@ -17170,6 +17216,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           field: 'time_to',
           sortable: true
         }, {
+          title: 'Day',
+          field: 'day',
+          sortable: true
+        }, {
           title: 'Question',
           field: 'question',
           sortable: true
@@ -18310,7 +18360,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../../node_mod
 
 
 // module
-exports.push([module.i, "\n.tabs[data-v-4b715bbf] {\n    overflow: hidden;\n  margin-left: 20px;\n    margin-bottom: -2px;\n}\n.tabs ul[data-v-4b715bbf] {\n    list-style-type: none;\n    margin-left: 20px;\n}\n.tabs a[data-v-4b715bbf]{\n    float: left;\n    cursor: pointer;\n    padding: 12px 24px;\n    transition: background-color 0.2s;\n    border: 1px solid #ccc;\n    border-right: none;\n    background-color: #f1f1f1;\n    border-radius: 10px 10px 0 0;\n    font-weight: bold;\n}\n.tabs a[data-v-4b715bbf]:last-child { \n    border-right: 1px solid #ccc;\n}\n\n/* Change background color of tabs on hover */\n.tabs a[data-v-4b715bbf]:hover {\n    background-color: #aaa;\n    color: #fff;\n}\n\n/* Styling for active tab */\n.tabs a.active[data-v-4b715bbf] {\n    background-color: #fff;\n    color: #484848;\n    border-bottom: 2px solid #fff;\n    cursor: default;\n}\n\n/* Style the tab content */\n.tabcontent[data-v-4b715bbf] {\n    padding: 30px;\n    border: 1px solid #ccc;\n    border-radius: 10px;\n  box-shadow: 3px 3px 6px #e1e1e1\n}\n", ""]);
+exports.push([module.i, "\n.tabs[data-v-4b715bbf] {\n    overflow: hidden;\n  margin-left: 20px;\n    margin-bottom: -2px;\n}\n.tabs ul[data-v-4b715bbf] {\n    list-style-type: none;\n    margin-left: 20px;\n}\n.tabs a[data-v-4b715bbf]{\n    float: left;\n    cursor: pointer;\n    padding: 12px 24px;\n    transition: background-color 0.2s;\n    border: 1px solid #ccc;\n    border-right: none;\n    background-color: #f1f1f1;\n    border-radius: 10px 10px 0 0;\n    font-weight: bold;\n}\n.tabs a[data-v-4b715bbf]:last-child {\n    border-right: 1px solid #ccc;\n}\n\n/* Change background color of tabs on hover */\n.tabs a[data-v-4b715bbf]:hover {\n    background-color: #aaa;\n    color: #fff;\n}\n\n/* Styling for active tab */\n.tabs a.active[data-v-4b715bbf] {\n    background-color: #fff;\n    color: #484848;\n    border-bottom: 2px solid #fff;\n    cursor: default;\n}\n\n/* Style the tab content */\n.tabcontent[data-v-4b715bbf] {\n    padding: 30px;\n    border: 1px solid #ccc;\n    border-radius: 10px;\n  box-shadow: 3px 3px 6px #e1e1e1\n}\n", ""]);
 
 // exports
 
@@ -66210,6 +66260,27 @@ var render = function() {
                           })
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", { attrs: { for: "day" } }, [
+                            _vm._v("Day")
+                          ]),
+                          _vm._v(" "),
+                          _c("date-picker", {
+                            attrs: {
+                              value: _vm.item.day,
+                              config: _vm.$root.dpconfigDate,
+                              name: "day",
+                              placeholder: "Enter Day"
+                            },
+                            on: { "dp-change": _vm.updateDay }
+                          })
+                        ],
+                        1
                       )
                     ]),
                     _vm._v(" "),
@@ -67098,6 +67169,27 @@ var render = function() {
                           })
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", { attrs: { for: "day" } }, [
+                            _vm._v("Day")
+                          ]),
+                          _vm._v(" "),
+                          _c("date-picker", {
+                            attrs: {
+                              value: _vm.item.day,
+                              config: _vm.$root.dpconfigDate,
+                              name: "day",
+                              placeholder: "Enter Day"
+                            },
+                            on: { "dp-change": _vm.updateDay }
+                          })
+                        ],
+                        1
                       )
                     ]),
                     _vm._v(" "),
@@ -67380,6 +67472,27 @@ var render = function() {
                               placeholder: "Enter Time to"
                             },
                             on: { "dp-change": _vm.updateTime_to }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", { attrs: { for: "day" } }, [
+                            _vm._v("Day")
+                          ]),
+                          _vm._v(" "),
+                          _c("date-picker", {
+                            attrs: {
+                              value: _vm.item.day,
+                              config: _vm.$root.dpconfigDate,
+                              name: "day",
+                              placeholder: "Enter Day"
+                            },
+                            on: { "dp-change": _vm.updateDay }
                           })
                         ],
                         1

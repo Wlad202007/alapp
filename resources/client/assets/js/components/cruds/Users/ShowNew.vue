@@ -61,21 +61,21 @@
                                                 </span>
                                             </td>
                                         </tr>
-                                        
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
 							<div class="row">
 							<div id="tabs" >
-  
+
 								<div class="tabs">
 									<a v-on:click="activetab=1" v-bind:class="[ activetab === 1 ? 'active' : '' ]">Notes</a>
 									<a v-on:click="activetab=2" v-bind:class="[ activetab === 2 ? 'active' : '' ]">Groups</a>
 									<a v-on:click="activetab=3" v-bind:class="[ activetab === 3 ? 'active' : '' ]">My Events</a>
 									<a v-on:click="activetab=4" v-bind:class="[ activetab === 4 ? 'active' : '' ]">Sessions</a>
 									<a v-on:click="activetab=5" v-bind:class="[ activetab === 5 ? 'active' : '' ]">Planners</a>
-									
+
 								</div>
 
 								<div class="content">
@@ -151,7 +151,7 @@
 											/>
 										</div>
 									</div>
-									
+
 										<div v-show="activetab === 3" class="tabcontent">
 										<div class="box-body">
 										<div class="btn-group">
@@ -261,11 +261,11 @@
 										</div>
 									</div>
 								</div>
-  
+
 							</div>
-							
+
 							</div>
-							
+
                         </div>
                     </div>
                 </div>
@@ -307,9 +307,9 @@ export default {
                     route: 'groups.user',
                     permission_prefix: 'group_',
 					params:'',
-					
+
                 }
-					
+
 				},
 				groupsquery: { sort: 'id', order: 'asc' ,offset:0,limit:10},
 				eventsquery: { sort: 'id', order: 'asc' ,offset:0,limit:10},
@@ -317,7 +317,7 @@ export default {
 					 columns: [
                     { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
 					{ title: 'Name', field: 'name', sortable: true },
-                
+
                 { title: 'Date from', field: 'date_from', sortable: true },
                 { title: 'Date to', field: 'date_to', sortable: true },
 //{ title: 'Full agenda', tdComp: DatatableFullAgendaField, sortable: false },
@@ -334,9 +334,9 @@ export default {
                     route: 'events.user',
                     permission_prefix: 'event_',
 					params:'',
-					
+
                 }
-					
+
 				},
 				plannersquery: { sort: 'id', order: 'asc' ,offset:0,limit:10},
 				 planners:{
@@ -347,7 +347,7 @@ export default {
                 { title: 'Body', field: 'body', sortable: true },
                 { title: 'Done', field: 'done', tdComp: DatatableCheckbox, colStyle: 'width: 50px;' },
                 { title: 'Author', field: 'author', tdComp: DatatableSinglePlanners },
-             
+
             { title: 'Actions', tdComp: DatatableActionsPlanners, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
                 ],
                 query: { sort: 'id', order: 'desc' },
@@ -356,9 +356,9 @@ export default {
                     route: 'planners.user',
                     permission_prefix: 'planner_',
 					params:'',
-					
+
                 }
-					
+
 				},
 				sessionsquery: { sort: 'id', order: 'asc' ,offset:0,limit:10},
 				 sessions:{
@@ -371,6 +371,7 @@ export default {
                 { title: 'Subject', field: 'subject', sortable: true },
                 { title: 'Time from', field: 'time_from', sortable: true },
                 { title: 'Time to', field: 'time_to', sortable: true },
+                { title: 'Day', field: 'day', sortable: true },
 	 { title: 'Question', field: 'question', sortable: true },
 				{ title: 'Actions', tdComp: DatatableActionsSessions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
                 ],
@@ -380,12 +381,12 @@ export default {
                     route: 'sessions.user',
                     permission_prefix: 'session_',
 					params:'',
-					
+
                 }
-					
+
 				},
 				sessionsquery: { sort: 'id', order: 'asc' ,offset:0,limit:10},
-				
+
 				notes:{
 					columns: [
                 { title: '#', field: 'id', sortable: true, colStyle: 'width: 50px;' },
@@ -403,12 +404,12 @@ export default {
 				},
 				notesquery: { sort: 'id', order: 'asc' ,offset:0,limit:10},
 				activetab: 1 ,
-					
+
         }
     },
     created() {
         this.fetchData(this.$route.params.id)
-		
+
 		this.fetchDataGroups(this.$route.params.id)
 		this.fetchDataNotes(this.$route.params.id)
 		this.fetchDataEvents(this.$route.params.id)
@@ -419,7 +420,7 @@ export default {
 		this.sessions.xprops.params = this.$route.params.id
 		this.events.xprops.params = this.$route.params.id
 		this.groups.xprops.params = this.$route.params.id
-		
+
 		this.$root.notesrelationships = this.notesrelationships
 		this.$root.groupsrelationships = this.groupsrelationships
 		this.$root.sessionsrelationships = this.sessionsrelationships
@@ -440,27 +441,27 @@ export default {
             this.planners.xprops.params = this.$route.params.id
 			this.sessions.xprops.params = this.$route.params.id
 			this.events.xprops.params = this.$route.params.id
-		
+
 			this.fetchData(this.$route.params.id)
 			this.fetchDataGroups(this.$route.params.id)
 			this.fetchDataNotes(this.$route.params.id)
 			this.fetchDataEvents(this.$route.params.id)
 			this.fetchDataSessions(this.$route.params.id)
 			this.fetchDataPlanners(this.$route.params.id)
-        
+
         },
 	query: {
             handler(query) {
                 this.setQuery(query)
             },
-			
+
             deep: true
         },
 		groupsquery:{
             handler(groupsquery) {
                 this.setQuery(groupsquery)
             },
-			
+
             deep: true
         },
 		notesquery:{
@@ -469,29 +470,29 @@ export default {
             },
 			   deep: true
         },
-		
+
 			eventsquery:{
             handler(eventsquery) {
                 this.setQuery(eventsquery)
             },
 			   deep: true
         },
-		
+
 			sessionsquery:{
             handler(sessionsquery) {
                 this.setQuery(sessionsquery)
             },
 			   deep: true
         },
-		
+
 			plannersquery:{
             handler(plannersquery) {
                 this.setQuery(plannersquery)
             },
-			
+
             deep: true
         },
-		
+
     },
     methods: {
         ...mapActions('UsersSinglenew', ['fetchData', 'resetState','fetchDataNotes','fetchDataGroups','destroyDataGroups','addDataGroups', 'destroyDataNotes','addDataNotes','fetchDataSessions','fetchDataEvents','fetchDataPlanners', 'destroyDataPlanners','addDataPlanners','destroyDataSessions','addDataSessions',  'destroyDataEvents','addDataEvents'])
@@ -504,7 +505,7 @@ export default {
 .tabs {
     overflow: hidden;
   margin-left: 20px;
-    margin-bottom: -2px; 
+    margin-bottom: -2px;
 }
 
 .tabs ul {
@@ -523,7 +524,7 @@ export default {
     border-radius: 10px 10px 0 0;
     font-weight: bold;
 }
-.tabs a:last-child { 
+.tabs a:last-child {
     border-right: 1px solid #ccc;
 }
 

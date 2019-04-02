@@ -115,6 +115,17 @@
                                             >
                                     </date-picker>
                                 </div>
+                                <div class="form-group">
+                                    <label for="day">Day</label>
+                                    <date-picker
+                                            :value="item.day"
+                                            :config="$root.dpconfigDate"
+                                            name="day"
+                                            placeholder="Enter Day"
+                                            @dp-change="updateDay"
+                                            >
+                                    </date-picker>
+                                </div>
                             </div>
 
                             <div class="box-footer">
@@ -157,7 +168,7 @@ props:['user','module'],
         this.resetState()
     },
     methods: {
-        ...mapActions('SessionsSingle', ['storeData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject','setQuestion', 'setTime_from', 'setTime_to', 'fetchUsersAll', 'fetchEventsAll']),
+        ...mapActions('SessionsSingle', ['storeData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject','setQuestion', 'setTime_from', 'setTime_to', 'setDay','fetchUsersAll', 'fetchEventsAll']),
         updateUser(value) {
             this.setUser(value)
         },
@@ -180,7 +191,7 @@ props:['user','module'],
 		initUser(user){
 			 axios.get('/api/v1/users/' + user)
             .then(response => {
-				
+
                 this.updateUser( response.data.data)
             })
 			},
@@ -203,25 +214,28 @@ props:['user','module'],
         updateTime_to(e) {
             this.setTime_to(e.target.value)
         },
+        updateDay(e) {
+            this.setDay(e.target.value)
+        },
 		 updateQuestion(e) {
             this.setQuestion(e.target.value)
         },
         submitForm() {
             this.storeData()
                 .then((data) => {
-				
+
 				console.log(this.user,data,this.module)
 					user=this.user
 					 this.$store.dispatch(
                         this.module + '/addDataSessions',
 						{user:user ,id: data.id}
                     ).then(result => {
-						
+
 						  this.$router.go(-1)
                     this.$eventHub.$emit('create-success')
-                       
+
                     })
-					
+
                     //this.$router.push({ name: 'sessions.index' })
                     //this.$eventHub.$emit('create-success')
                 })

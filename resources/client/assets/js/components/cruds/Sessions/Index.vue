@@ -74,6 +74,7 @@ export default {
                 { title: 'Subject', field: 'subject', sortable: true },
                 { title: 'Time from', field: 'time_from', sortable: true },
                 { title: 'Time to', field: 'time_to', sortable: true },
+                { title: 'Day', field: 'day', sortable: true },
 				 { title: 'Question', field: 'question', sortable: true },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],

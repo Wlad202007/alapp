@@ -87,6 +87,18 @@ class Session extends Model implements HasMedia
         return $this->attributes['day'] = Carbon::createFromFormat('d.m.Y',$input)->format('Y-m-d');
     }
 
+    public function getDayAttribute()
+    {
+
+        $day = $this->attributes['day'];
+
+        if($day == null){
+            return null;
+        }
+
+        return Carbon::createFromFormat('Y-m-d',$day)->format('d.m.Y');
+    }
+
     public function event()
     {
         return $this->belongsTo(Event::class, 'event_id')->withTrashed();
