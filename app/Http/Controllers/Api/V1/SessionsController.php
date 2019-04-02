@@ -103,6 +103,9 @@ class SessionsController extends Controller
 //            return abort(401);
 //        }
 
+            $user = null;
+            $user = \Auth::user();
+
         $session = Session::findOrFail($id);
 		if($type == 'del'){
 			$session->questions()->sync([]);
