@@ -110,7 +110,7 @@ class SessionsController extends Controller
 		if($type == 'del'){
 			$session->questions()->sync([]);
 		}elseif($type == 'yes' or $type == 'no') {
-            $session->questions()->save([$user_id =>['status'=> $type]]);
+            $session->questions()->updateExistingPivot([$user_id =>['status'=> $type]], false);
 
 //            if($type == 'yes') {
 //                $session->questions()->attach([$user_id =>['status'=> 'yes']]);
