@@ -115,6 +115,17 @@
                                             >
                                     </date-picker>
                                 </div>
+                                <div class="form-group">
+                                    <label for="day">Day</label>
+                                    <date-picker
+                                            :value="item.day"
+                                            :config="$root.dpconfigDate"
+                                            name="day"
+                                            placeholder="Enter The Day"
+                                            @dp-change="updateDay"
+                                            >
+                                    </date-picker>
+                                </div>
                             </div>
 
                             <div class="box-footer">
@@ -160,7 +171,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('SessionsSingle', ['fetchData', 'updateData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject','setQuestion', 'setTime_from', 'setTime_to']),
+        ...mapActions('SessionsSingle', ['fetchData', 'updateData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject','setQuestion', 'setTime_from', 'setTime_to', 'setDay']),
         updateUser(value) {
             this.setUser(value)
         },
@@ -198,6 +209,9 @@ export default {
         },
         updateTime_to(e) {
             this.setTime_to(e.target.value)
+        },
+        updateDay(e) {
+            this.setDay(e.target.value)
         },
 		 updateQuestion(e) {
             this.setQuestion(e.target.value)

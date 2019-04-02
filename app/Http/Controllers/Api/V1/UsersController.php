@@ -84,9 +84,9 @@ class UsersController extends Controller
         $user->update($request->all());
         $user->role()->sync($request->input('role', []));
         $user->my_events()->sync($request->input('my_events', []));
-        if (! $request->input('avatar') && $user->getFirstMedia('avatar')) {
-            $user->getFirstMedia('avatar')->delete();
-        }
+//        if (! $request->input('avatar') && $user->getFirstMedia('avatar')) {
+//            $user->getFirstMedia('avatar')->delete();
+//        }
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->file('avatar'))->toMediaCollection('avatar');
         }

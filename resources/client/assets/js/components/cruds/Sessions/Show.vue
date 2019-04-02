@@ -56,7 +56,7 @@
 										<tr>
                                             <th>Question</th>
                                             <td>{{ item.question }}</td>
-                                            </tr>	
+                                            </tr>
                                         <tr>
                                             <th>Time from</th>
                                             <td>{{ item.time_from }}</td>
@@ -64,6 +64,10 @@
                                         <tr>
                                             <th>Time to</th>
                                             <td>{{ item.time_to }}</td>
+                                            </tr>
+                                        <tr>
+                                            <th>Day</th>
+                                            <td>{{ item.day }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

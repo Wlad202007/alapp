@@ -10,10 +10,11 @@ function initialState() {
             question:null,
             time_from: null,
             time_to: null,
+            day: null,
         },
         usersAll: [],
         eventsAll: [],
-        
+
         loading: false,
     }
 }
@@ -23,7 +24,7 @@ const getters = {
     loading: state => state.loading,
     usersAll: state => state.usersAll,
     eventsAll: state => state.eventsAll,
-    
+
 }
 
 const actions = {
@@ -171,7 +172,7 @@ const actions = {
     setPresentation({ commit }, value) {
         commit('setPresentation', value)
     },
-    
+
     setEvent({ commit }, value) {
         commit('setEvent', value)
     },
@@ -189,6 +190,9 @@ const actions = {
     },
     setTime_to({ commit }, value) {
         commit('setTime_to', value)
+    },
+    setDay({ commit }, value) {
+        commit('setDay', value)
     },
     resetState({ commit }) {
         commit('resetState')
@@ -223,13 +227,16 @@ const mutations = {
     setTime_to(state, value) {
         state.item.time_to = value
     },
+    setDay(state, value) {
+        state.item.day = value
+    },
     setUsersAll(state, value) {
         state.usersAll = value
     },
     setEventsAll(state, value) {
         state.eventsAll = value
     },
-    
+
     setLoading(state, loading) {
         state.loading = loading
     },

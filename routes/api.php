@@ -2,6 +2,13 @@
 
 Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
 
+
+    Route::post('login', 'UsersController@login')->name('api.login');
+    Route::post('register', 'UsersController@register')->name('api.register');
+
+
+    Route::get('send-viber-msg', 'MessagesController@sendViberMsg');
+
     Route::get('my_account', 'UsersController@myAccount');
     Route::post('update-profile', 'UsersController@updateProfile');
     Route::post('like-user/{id}', 'UsersLikesController@like');

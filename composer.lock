@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3ed651e0841c18f970cbcb749b32ddf",
+    "content-hash": "5e92e5d01dd4492bde8c704538faa6d1",
     "packages": [
+        {
+            "name": "bogdaan/viber-bot-php",
+            "version": "0.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bogdaan/viber-bot-php.git",
+                "reference": "984b6bccd4956c60ae6ef35b57865278b86ba4aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bogdaan/viber-bot-php/zipball/984b6bccd4956c60ae6ef35b57865278b86ba4aa",
+                "reference": "984b6bccd4956c60ae6ef35b57865278b86ba4aa",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^1.22",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Viber\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Novikov Bogdan",
+                    "email": "hcbogdan@gmail.com"
+                }
+            ],
+            "description": "Php bot interface to work with Viber API",
+            "keywords": [
+                "bot",
+                "im",
+                "viber"
+            ],
+            "time": "2018-04-22T19:23:04+00:00"
+        },
         {
             "name": "defuse/php-encryption",
             "version": "v2.2.1",

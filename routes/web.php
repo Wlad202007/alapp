@@ -3,10 +3,14 @@
 
 Route::group(['before'=>'csrf'], function () {
     Route::get('x-csrf-token', 'Api\V1\UsersController@xCsrfToken')->name('auth.x-csrf-token');
+
+
+    $this->post('api/login', 'Api\V1\UsersController@login')->name('api.login');
+    $this->post('api/register', 'Api\V1\UsersController@register')->name('api.register');
+
+
 });
 
-$this->post('api/login', 'Api\V1\UsersController@login')->name('api.login');
-$this->post('api/register', 'Api\V1\UsersController@register')->name('api.register');
 $this->post('api/resetPassword', 'Api\V1\UsersController@resetPassword')->name('api.resetPassword');
 
 

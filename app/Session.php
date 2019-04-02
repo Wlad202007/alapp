@@ -23,11 +23,11 @@ class Session extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    
-    protected $fillable = ['description', 'subject','question', 'time_from', 'time_to', 'user_id', 'event_id'];
+
+    protected $fillable = ['description', 'subject','question', 'time_from', 'time_to', 'user_id', 'event_id','day'];
     protected $appends = ['presentation', 'presentation_link', 'rate_content', 'rate_style'];
     protected $with = ['media','user'];
-    
+
 
     public static function storeValidation($request)
     {
@@ -37,7 +37,7 @@ class Session extends Model implements HasMedia
             'event_id' => 'integer|exists:events,id|max:4294967295|required',
             'description' => 'max:65535|nullable',
             'subject' => 'max:191|required',
-			 'question' => 'max:191',
+			      'question' => 'max:191',
             'time_from' => 'date_format:H:i|max:191|nullable',
             'time_to' => 'date_format:H:i|max:191|nullable'
         ];
@@ -51,13 +51,13 @@ class Session extends Model implements HasMedia
             'event_id' => 'integer|exists:events,id|max:4294967295|required',
             'description' => 'max:65535|nullable',
             'subject' => 'max:191|required',
-			 'question' => 'max:191',
+			      'question' => 'max:191',
             'time_from' => 'date_format:H:i|max:191|nullable',
             'time_to' => 'date_format:H:i|max:191|nullable'
         ];
     }
 
-    
+
 
     public function getPresentationAttribute()
     {
@@ -76,12 +76,17 @@ class Session extends Model implements HasMedia
 
         return url($file->getUrl());
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
+    public function setDayAttribute($input)
+    {
+        return $this->attributes['day'] = Carbon::createFromFormat('d.m.Y',$input)->format('Y-m-d');
+    }
+
     public function event()
     {
         return $this->belongsTo(Event::class, 'event_id')->withTrashed();
@@ -91,21 +96,21 @@ class Session extends Model implements HasMedia
     {
         return $this->hasMany(Rate::class, 'session_id')->withTrashed();
     }
- 
- 
+
+
  public function questions()
     {
         return $this->belongsToMany(User::class, 'session_user')->withPivot('status');
-    } 
-	
+    }
+
 	public function votes()
     {
         return $this->hasMany(Vote::class,'session_id');
     }
-	
-	
-	
-	
+
+
+
+
 
     public function getRateContentAttribute()
     {
@@ -117,19 +122,19 @@ class Session extends Model implements HasMedia
         return $this->rates()->where('type','style')->avg('stars');
     }
       public function scopeOfUser($query,$user)
-    { 
-		
-        return   $query->whereHas('user', function ($query) use ( $user) 
+    {
+
+        return   $query->whereHas('user', function ($query) use ( $user)
 					{  $query->where('user_id',$user);});
-		
+
     }
-	
+
 	      public function scopeVoteCount($query)
-    { 
-		        return   $query->withCount([ 
+    {
+		        return   $query->withCount([
 		'questions as votes_yes' => function ($query) { $query->where('status', 'yes');},
 		'questions as votes_no' => function ($query) { $query->where('status', 'no');}
-		
+
 		]);
 	}
 }

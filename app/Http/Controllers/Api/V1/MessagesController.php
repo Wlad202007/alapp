@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use Auth;
 use App\User;
+use App\Viber;
 use App\Message;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Message as MessageResource;
@@ -19,6 +20,20 @@ class MessagesController extends Controller
 {
     
     
+    public function sendViberMsg(Request $request)
+    {
+        $Viber = new Viber();
+        dd($Viber->message_post(
+            '01234567890A=',
+            [
+                'name' => 'Admin', // Имя отправителя. Максимум символов 28.
+                'avatar' => 'http://avatar.example.com' // Ссылка на аватарку. Максимальный размер 100кб.
+            ],
+            'Test'
+        ));
+    }
+
+
     public function my()
     {
         return Auth::user()->myMessages()->get();
@@ -31,13 +46,17 @@ class MessagesController extends Controller
 
         $myMessages = User::whereHas('myMessages', function($q) use ($auth){
             $q->where('author_id', $auth->id)
-              ->orWhere('friend_id', $auth->id);
-        })->with('myMessages')->get()->unique()->toArray();
+              ->orWhere('friend_id', $auth->id)
+                ->orderBy('created_at', 'DESC');
+        })->with('myMessages')->orderBy('created_at', 'DESC')
+            ->get()->unique()->toArray();
 
         $friendsMessages = User::whereHas('friendsMessages', function($q) use ($auth){
             $q->where('author_id', $auth->id)
-              ->orWhere('friend_id', $auth->id);
-        })->with('friendsMessages')->get()->unique()->toArray();
+              ->orWhere('friend_id', $auth->id)
+                ->orderBy('created_at', 'DESC');
+        })->with('friendsMessages')->orderBy('created_at', 'DESC')
+            ->get()->unique()->toArray();
 
         $merged = array_merge($myMessages, $friendsMessages);
 

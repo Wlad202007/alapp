@@ -13322,6 +13322,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -13341,7 +13352,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.fetchData(this.$route.params.id);
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['fetchData', 'updateData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to']), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('SessionsSingle', ['fetchData', 'updateData', 'resetState', 'setUser', 'setPresentation', 'setEvent', 'setDescription', 'setSubject', 'setQuestion', 'setTime_from', 'setTime_to', 'setDay']), {
     updateUser: function updateUser(value) {
       this.setUser(value);
     },
@@ -13381,6 +13392,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     updateTime_to: function updateTime_to(e) {
       this.setTime_to(e.target.value);
+    },
+    updateDay: function updateDay(e) {
+      this.setDay(e.target.value);
     },
     updateQuestion: function updateQuestion(e) {
       this.setQuestion(e.target.value);
@@ -13578,6 +13592,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -66477,6 +66495,27 @@ var render = function() {
                           })
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", { attrs: { for: "day" } }, [
+                            _vm._v("Day")
+                          ]),
+                          _vm._v(" "),
+                          _c("date-picker", {
+                            attrs: {
+                              value: _vm.item.day,
+                              config: _vm.$root.dpconfigDate,
+                              name: "day",
+                              placeholder: "Enter The Day"
+                            },
+                            on: { "dp-change": _vm.updateDay }
+                          })
+                        ],
+                        1
                       )
                     ]),
                     _vm._v(" "),
@@ -66790,6 +66829,12 @@ var render = function() {
                             _c("th", [_vm._v("Time to")]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(_vm.item.time_to))])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("th", [_vm._v("Day")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.item.day))])
                           ])
                         ])
                       ]
@@ -89373,7 +89418,8 @@ function initialState() {
       subject: null,
       question: null,
       time_from: null,
-      time_to: null
+      time_to: null,
+      day: null
     },
     usersAll: [],
     eventsAll: [],
@@ -89576,8 +89622,12 @@ var actions = {
     var commit = _ref13.commit;
     commit('setTime_to', value);
   },
-  resetState: function resetState(_ref14) {
+  setDay: function setDay(_ref14, value) {
     var commit = _ref14.commit;
+    commit('setDay', value);
+  },
+  resetState: function resetState(_ref15) {
+    var commit = _ref15.commit;
     commit('resetState');
   }
 };
@@ -89608,6 +89658,9 @@ var mutations = {
   },
   setTime_to: function setTime_to(state, value) {
     state.item.time_to = value;
+  },
+  setDay: function setDay(state, value) {
+    state.item.day = value;
   },
   setUsersAll: function setUsersAll(state, value) {
     state.usersAll = value;
