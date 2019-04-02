@@ -70,9 +70,9 @@ class EventsController extends Controller
 
     public function show($id)
     {
-        if (Gate::denies('event_view')) {
-            return abort(401);
-        }
+//        if (Gate::denies('event_view')) {
+//            return abort(401);
+//        }
 
         $event = Event::with(['attendees', 'sponsors', 'agenda_requests', 'sessions', 'agendas', 'industry'])->findOrFail($id);
 
