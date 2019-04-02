@@ -1,0 +1,8 @@
+.env
+/storage
+/tests
+/vendor
+/node_modules
+/bootstrap
+/public/storage
+/vendor
