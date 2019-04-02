@@ -110,15 +110,15 @@ class SessionsController extends Controller
 		if($type == 'del'){
 			$session->questions()->sync([]);
 		}elseif($type == 'yes' or $type == 'no') {
-//            $session->questions()->sync([$user_id =>['status'=> $type]]);
+            $session->questions()->save([$user_id =>['status'=> $type]]);
 
-            if($type == 'yes') {
-                $session->questions()->attach([$user_id =>['status'=> 'yes']]);
-                $session->questions()->detach([$user_id =>['status'=> 'no']]);
-            }elseif($type == 'no') {
-                $session->questions()->attach([$user_id =>['status'=> 'no']]);
-                $session->questions()->detach([$user_id =>['status'=> 'yes']]);
-            }
+//            if($type == 'yes') {
+//                $session->questions()->attach([$user_id =>['status'=> 'yes']]);
+//                $session->questions()->detach([$user_id =>['status'=> 'no']]);
+//            }elseif($type == 'no') {
+//                $session->questions()->attach([$user_id =>['status'=> 'no']]);
+//                $session->questions()->detach([$user_id =>['status'=> 'yes']]);
+//            }
 
         }
 
