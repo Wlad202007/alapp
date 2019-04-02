@@ -22,9 +22,9 @@ class UsersController extends Controller
 {
     public function index()
     {
-        if (Gate::denies('user_access')) {
-            return abort(401);
-        }
+//        if (Gate::denies('user_access')) {
+//            return abort(401);
+//        }
 
         return new UserResource(User::with(['role', 'my_events'])->get());
     }
@@ -47,9 +47,9 @@ class UsersController extends Controller
 
     public function show($id)
     {
-        if (Gate::denies('user_view')) {
-            return abort(401);
-        }
+//        if (Gate::denies('user_view')) {
+//            return abort(401);
+//        }
 
         $user = User::with(['role', 'my_events'])->findOrFail($id);
 

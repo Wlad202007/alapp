@@ -33,9 +33,9 @@ class SessionsController extends Controller
 
     public function show($id)
     {
-        if (Gate::denies('session_view')) {
-            return abort(401);
-        }
+//        if (Gate::denies('session_view')) {
+//            return abort(401);
+//        }
 
         $session = Session::with(['user', 'event'])->voteCount()->findOrFail($id);
 
