@@ -104,13 +104,13 @@ class SessionsController extends Controller
 //        }
 
             $user = null;
-            $user = \Auth::user();
+            $user_id = \Auth::user()->id;
 
         $session = Session::findOrFail($id);
 		if($type == 'del'){
 			$session->questions()->sync([]);
 		}elseif($type == 'yes' or $type == 'no') {
-			$session->questions()->sync([$user =>['status'=> $type]]);
+			$session->questions()->sync([$user_id =>['status'=> $type]]);
 		}
 
 
