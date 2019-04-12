@@ -98,7 +98,7 @@ class UsersController extends Controller
 
     public function updateProfile(Request $request)
     {
-        
+
         if (Auth::user()->email != $request->email) {
             return abort(401);
         }
@@ -106,7 +106,7 @@ class UsersController extends Controller
         $user = Auth::user();
         $user->update($request->all());
 
-        
+
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->file('avatar'))->toMediaCollection('avatar');
         }
@@ -173,6 +173,9 @@ class UsersController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'company' => $request->company,
+            'job' => $request->job,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 
@@ -199,7 +202,7 @@ class UsersController extends Controller
 			 $userid->joined()->detach($id);
 			  $code=204;
 			 }
-		 
+
 		 }elseif($model=='events'){
 			 if($type=='add'){
 			 $userid->events()->attach($id);
@@ -229,12 +232,12 @@ class UsersController extends Controller
 			  $code=204;
 			 }
 		 }
-		 
-		 
+
+
 		   return response(null, $code);
-		
-		
+
+
 	}
-	
-	
+
+
 }
