@@ -82,12 +82,18 @@ class User extends Authenticatable implements HasMedia
      */
     public function getAvatarLinkAttribute()
     {
+
+        $files = $this->getMedia('avatar');
+
         $file = $this->getFirstMedia('avatar');
+
+//        dd($files->count(), $file);
+
         if (! $file) {
             return null;
         }
 
-        return url($file->getUrl());
+        return url($files[$files->count()-1]->getUrl());
     }
 
     /**
@@ -108,12 +114,12 @@ class User extends Authenticatable implements HasMedia
     
     public function my_events()
     {
-        return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id');
+        return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id')->orderBy('created_at', 'desc');
     }
 
     public function fav_events()
     {
-        return $this->belongsToMany(Event::class, 'fav_event_user', 'user_id', 'event_id');
+        return $this->belongsToMany(Event::class, 'fav_event_user', 'user_id', 'event_id')->orderBy('created_at', 'desc');
     }
 
     public function joined()

@@ -17,7 +17,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        return new PostResource(Post::with(['group', 'author'])->get());
+        return new PostResource(Post::with(['group', 'author' , 'comments', 'comments.author','likes'])->get());
     }
  public function indexGroup($group)
     {
@@ -33,7 +33,7 @@ class PostsController extends Controller
             return abort(401);
         }
 
-        $post = Post::with(['group', 'author'])->findOrFail($id);
+        $post = Post::with(['group', 'author' ,'comments' ,'comments.author','likes'])->findOrFail($id);
 
         return new PostResource($post);
     }
@@ -60,7 +60,7 @@ class PostsController extends Controller
 //        }
 
         $post = Post::create($request->all());
-        
+
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $key => $file) {
                 $post->addMedia($file)->toMediaCollection('gallery');
@@ -80,7 +80,7 @@ class PostsController extends Controller
 
         $post = Post::findOrFail($id);
         $post->update($request->all());
-        
+
         $filesInfo = explode(',', $request->input('uploaded_gallery'));
         foreach ($post->getMedia('gallery') as $file) {
             if (! in_array($file->id, $filesInfo)) {
@@ -98,15 +98,15 @@ class PostsController extends Controller
             ->setStatusCode(202);
     }
 
-    
+
 
     public function destroy($id)
     {
-        if (Gate::denies('post_delete')) {
-            return abort(401);
-        }
+//        if (Gate::denies('post_delete')) {
+//            return abort(401);
+//        }
 
-        $post = Post::findOrFail($id);
+        $post = Post::where('id',$id)->withTrashed()->first();
         $post->delete();
 
         return response(null, 204);

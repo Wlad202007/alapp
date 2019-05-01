@@ -16,9 +16,9 @@ class Comment extends Model
 {
     use SoftDeletes;
 
-    
+
     protected $fillable = ['text', 'post_id', 'author_id'];
-    
+
 
     public static function storeValidation($request)
     {
@@ -38,19 +38,19 @@ class Comment extends Model
         ];
     }
 
-    
 
-    
-    
+
+
+
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id')->withTrashed();
     }
-    
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
-    
-    
+
+
 }

@@ -18,11 +18,11 @@ class Post extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    
+
     protected $fillable = ['body', 'group_id', 'author_id'];
-    protected $appends = ['gallery', 'gallery_link', 'uploaded_gallery'];
-    protected $with = ['media','author'];
-    
+    protected $appends = ['gallery', 'gallery_link', 'uploaded_gallery','comments_count','likes_count'];
+    protected $with = ['media','author','comments','likes'];
+
 
     public static function storeValidation($request)
     {
@@ -44,8 +44,22 @@ class Post extends Model implements HasMedia
         ];
     }
 
-    
-
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'post_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id');
+    }
+    public function getCommentsCountAttribute()
+    {
+        return $this->comments()->count();
+    }
+    public function getLikesCountAttribute()
+    {
+        return $this->likes()->count();
+    }
     public function getGalleryAttribute()
     {
         return [];
@@ -72,22 +86,23 @@ class Post extends Model implements HasMedia
 
         return implode('<br/>', $html);
     }
-    
+
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id')->withTrashed();
     }
-    
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
       public function scopeOfGroup($query,$group)
-    { 
-		
-        return   $query->whereHas('group', function ($query) use ( $group) 
+    {
+
+        return   $query->whereHas('group', function ($query) use ( $group)
 					{  $query->where('groups.id',$group);});
-		
+
     }
-    
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use Auth;
 use Hash;
 use App\User;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use App\Http\Requests\Admin\StoreUsersRequest;
@@ -107,6 +108,19 @@ class UsersController extends Controller
         $user->update($request->all());
 
 
+        if($request->avatar64){
+            $user->clearMediaCollection();
+            $timestamp = Carbon::now()->timestamp;
+            $user->addMediaFromBase64($request->avatar64) //starting method
+            ->usingFileName($user->id.'-'.$timestamp.'.jpg')
+                ->withCustomProperties(['mime-type' => 'image/jpeg']) //middle method
+//                ->addMediaConversion('thumb')
+//                ->setManipulations(['w' => 30])
+                ->preservingOriginal() //middle method
+                ->toMediaCollection('avatar');
+        }
+
+
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->file('avatar'))->toMediaCollection('avatar');
         }
@@ -178,6 +192,9 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
+
+        $simple_role = \DB::table('roles')->where('title', 'Simple user')->pluck('id');
+        $user->role()->sync($simple_role);
 
         Auth::login($user);
         return $user;

@@ -16,7 +16,7 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        
+
 
         return new CommentResource(Comment::with(['post', 'author'])->get());
     }
@@ -32,6 +32,17 @@ class CommentsController extends Controller
         return new CommentResource($comment);
     }
 
+    public function store_com(Request $request)
+    {
+        if (Gate::denies('comment_create')) {
+            return abort(401);
+        }
+
+        $comment = Comment::create($request->all());
+
+        return Comment::with(['author'])->findOrFail($comment->id);
+    }
+
     public function store(StoreCommentsRequest $request)
     {
         if (Gate::denies('comment_create')) {
@@ -39,13 +50,15 @@ class CommentsController extends Controller
         }
 
         $comment = Comment::create($request->all());
-        
-        
+
+
 
         return (new CommentResource($comment))
             ->response()
             ->setStatusCode(201);
     }
+
+
 
     public function update(UpdateCommentsRequest $request, $id)
     {
@@ -55,9 +68,9 @@ class CommentsController extends Controller
 
         $comment = Comment::findOrFail($id);
         $comment->update($request->all());
-        
-        
-        
+
+
+
 
         return (new CommentResource($comment))
             ->response()

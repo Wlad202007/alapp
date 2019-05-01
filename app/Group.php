@@ -18,7 +18,7 @@ class Group extends Model
 
     protected $fillable = ['name', 'status'];
     protected $with = ['posts'];
-    protected $appends = ['if_joined'];
+    protected $appends = ['if_joined','joined_count'];
 
 
     public static function storeValidation($request)
@@ -39,13 +39,18 @@ class Group extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'group_id')->withTrashed();
+        return $this->hasMany(Post::class, 'group_id');
     }
 
 
     public function joined()
     {
         return $this->belongsToMany(User::class, 'group_user', 'group_id', 'user_id');
+    }
+
+    public function getJoinedCountAttribute()
+    {
+        return $this->joined()->count();
     }
 
     public function getIfJoinedAttribute()
@@ -60,11 +65,11 @@ class Group extends Model
     }
 
   public function scopeOfUser($query,$user)
-    { 
-		
-        return   $query->whereHas('joined', function ($query) use ( $user) 
+    {
+
+        return   $query->whereHas('joined', function ($query) use ( $user)
 					{  $query->where('user_id',$user);});
-		
+
     }
 
 }

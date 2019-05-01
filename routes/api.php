@@ -14,6 +14,8 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::post('like-user/{id}', 'UsersLikesController@like');
 
     Route::post('add_post', 'PostsController@storeAlt');
+    Route::post('add_comment', 'CommentsController@store_com');
+    Route::post('like_post', 'LikesController@store_like');
 
     Route::get('my-plans', 'PlannersController@myIndex');
     Route::get('toggle-done/{id}', 'PlannersController@toggleDone');
@@ -30,6 +32,7 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::get('toggle-fav-event/{id}', 'EventsController@toggleLike');
     Route::get('send-agenda-request/{id}', 'EventsController@sendAgendaRequest');
 
+    Route::get('all-events', 'EventsController@allIndex');
     Route::get('past-events', 'EventsController@pastIndex');
     Route::get('future-events', 'EventsController@futureIndex');
 
@@ -38,19 +41,19 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
 
 	 Route::get('agendas_event/{id}', 'AgendasController@indexEvent');
 	Route::get('sponsors_event/{id}', 'SponsorsController@indexEvent');
-	
+
 	Route::get('users_group/{id}', 'UsersController@indexGroup');
 	Route::get('posts_group/{id}', 'PostsController@indexGroup');
-	
+
 	Route::get('notes_user/{id}', 'NotesController@indexUser');
 	Route::get('groups_user/{id}', 'GroupsController@indexUser');
 	Route::get('events_user/{id}', 'EventsController@indexUser');
 	Route::get('sessions_user/{id}', 'SessionsController@indexUser');
 	Route::get('planners_user/{id}', 'PlannersController@indexUser');
-	
-	
-	
-	
+
+
+
+
 	Route::get('group_relation/{group}/{model}/{type}/{id}', 'GroupsController@groupRelation');
 	Route::get('user_relation/{user}/{model}/{type}/{id}', 'UsersController@userRelation');
 	Route::get('event_relation/{event}/{model}/{type}/{id}', 'EventsController@eventRelation');
@@ -58,7 +61,7 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
 	////////////////////////////////////////
 	Route::get('session_vote/{type}/{id}/{user}', 'SessionsController@vote');
 	Route::get('session_votes/{id}', 'SessionsController@votes');
-	
+
     Route::post('change-password', 'ChangePasswordController@changePassword')->name('auth.change_password');
     Route::apiResource('rules', 'RulesController', ['only' => ['index']]);
     Route::apiResource('permissions', 'PermissionsController');

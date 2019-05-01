@@ -19,9 +19,14 @@ class EventsController extends Controller
 {
     public function index()
     {
-        
+
 
         return new EventResource(Event::with(['attendees', 'sponsors', 'agenda', 'industry'])->get());
+    }
+    public function allIndex()
+    {
+      $events = Event::with(['attendees', 'sponsors', 'agenda', 'industry'])->get();
+      return $events;
     }
  public function indexUser($user)
     {
@@ -33,7 +38,7 @@ class EventsController extends Controller
     }
     public function pastIndex()
     {
-         $events = Event::whereDate('date_from','<=', date('Y-m-d'))->with(['attendees', 'sponsors', 'agenda', 'industry'])->get();
+         $events = Event::whereDate('date_to','<=', date('Y-m-d'))->with(['attendees', 'sponsors', 'agenda', 'industry'])->get();
          return $events;
     }
     public function futureIndex()
@@ -103,7 +108,7 @@ class EventsController extends Controller
         if (Gate::denies('event_edit')) {
             return abort(401);
         }
-        
+
         $event = Event::findOrFail($id);
         $event->update($request->all());
         $event->attendees()->sync($request->input('attendees', []));
@@ -132,7 +137,7 @@ class EventsController extends Controller
 
         return response(null, 204);
     }
-	
+
 	public function eventRelation($event,$model,$type,$id){
 		 if (Gate::denies('event_edit')) {
             return abort(401);
@@ -156,13 +161,13 @@ class EventsController extends Controller
 			  $code=204;
 			 }
 		 }
-		 
-		 
+
+
 		   return response(null, $code);
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 }
