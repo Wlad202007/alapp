@@ -92,11 +92,17 @@ class Post extends Model implements HasMedia
         return $this->belongsTo(Group::class, 'group_id')->withTrashed();
     }
 
+    public function read_by()
+    {
+        return $this->belongsToMany(User::class,'read_status','post_id','author_id');
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
-      public function scopeOfGroup($query,$group)
+
+    public function scopeOfGroup($query,$group)
     {
 
         return   $query->whereHas('group', function ($query) use ( $group)

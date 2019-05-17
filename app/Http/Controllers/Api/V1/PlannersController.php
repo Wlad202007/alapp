@@ -44,14 +44,14 @@ class PlannersController extends Controller
 		//dd($sponsors,$query1);
         return new PlannerResource($planners);
     }
-	
+
     public function toggleDone(Request $request, $id){
         $post = Planner::findOrFail($id);
 
         if($post->done == 1){
             $done = 0;
         } else {
-            $done = 01;
+            $done = 1;
         }
 
         $post->update([
@@ -96,7 +96,7 @@ class PlannersController extends Controller
 
         $planner = Planner::create($request->all());
         $planner->users()->sync($request->input('users', []));
-        
+
 
         return (new PlannerResource($planner))
             ->response()
@@ -112,8 +112,8 @@ class PlannersController extends Controller
         $planner = Planner::findOrFail($id);
         $planner->update($request->all());
         $planner->users()->sync($request->input('users', []));
-        
-        
+
+
 
         return (new PlannerResource($planner))
             ->response()

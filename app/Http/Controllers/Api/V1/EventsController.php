@@ -23,9 +23,17 @@ class EventsController extends Controller
 
         return new EventResource(Event::with(['attendees', 'sponsors', 'agenda', 'industry'])->get());
     }
-    public function allIndex()
+    public function allIndex(request $request)
     {
+      $month = $request->month;
+      $year = $request->year;
+
+      if($month and $year){
+        $events = Event::whereMonth('date_from',$month)->whereYear('date_from',$year)->with(['attendees', 'sponsors', 'agenda', 'industry'])->get();
+      }
+      else{
       $events = Event::with(['attendees', 'sponsors', 'agenda', 'industry'])->get();
+      }
       return $events;
     }
  public function indexUser($user)

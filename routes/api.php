@@ -2,9 +2,16 @@
 
 Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
 
+    Route::get('test-read-status', 'UsersController@swithchReadStatus');
+    Route::get('shopping-lists', 'ShoppingListsController@index');
+    Route::get('shopping-lists/{id}', 'ShoppingListsController@show');
+    Route::get('shoppings', 'ShoppingsController@index');
+    Route::get('shopping-done/{id}', 'ShoppingsController@shoppingDone');
 
     Route::post('login', 'UsersController@login')->name('api.login');
     Route::post('register', 'UsersController@register')->name('api.register');
+
+
 
 
     Route::get('send-viber-msg', 'MessagesController@sendViberMsg');
@@ -69,6 +76,8 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::apiResource('users', 'UsersController');
     Route::apiResource('messages', 'MessagesController');
     Route::apiResource('events', 'EventsController');
+    Route::apiResource('shoppings', 'ShoppingsController');
+    Route::apiResource('shopping-lists', 'ShoppingListsController');
     Route::apiResource('sessions', 'SessionsController');
     Route::apiResource('rates', 'RatesController');
     Route::apiResource('answers', 'AnswersController');

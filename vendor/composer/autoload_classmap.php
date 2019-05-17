@@ -130,6 +130,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Rate' => $baseDir . '/app/Rate.php',
+    'App\\ReadStatus' => $baseDir . '/app/ReadStatus.php',
     'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Session' => $baseDir . '/app/Session.php',
     'App\\Sponsor' => $baseDir . '/app/Sponsor.php',

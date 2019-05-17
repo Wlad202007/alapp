@@ -21,6 +21,41 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 
 class UsersController extends Controller
 {
+    public function swithchReadStatus()
+    {
+        $auth = Auth::user();
+        $lastMessage = 'No new posts';
+        // $post_id = $id;
+        $groupArray = $auth->joined()->get()->pluck('id')->toArray();
+        // $post_id = \App\Post::all()->first()->id; // NEED TO BE REPLACED WITH POST ID FROM REQUEST!!!
+        // return $auth->joined()->Select('id')->get()->toArray();
+        // $auth->read_status()->attach([$post_id]);
+
+       //return $auth->read_status()->get()->count(); // RETURN ALL SYNCRONYZED POSTS - NOT NECESSARY
+
+               // GET UNREAD MSGS
+       $unreadMessages = \App\Post::whereIn('group_id',  $groupArray)
+       ->whereDoesntHave('read_by', function($query) use ($auth){
+           $query->where('author_id', '=', $auth->id);
+       });
+
+       foreach ($unreadMessages->get() as  $Message) {
+          $lastMessage = $Message;
+          $auth->read_status()->attach($Message->id);
+       };
+        // GET READ MSGS
+        // $readMessages = \App\Post::whereHas('read_by', function($query) use ($auth){
+        //     $query->where('author_id', '=', $auth->id);
+        // })->get()->count();
+
+        return  $lastMessage;
+
+
+
+    }
+
+
+
     public function index()
     {
 //        if (Gate::denies('user_access')) {

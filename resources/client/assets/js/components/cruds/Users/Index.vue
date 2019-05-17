@@ -2,6 +2,7 @@
     <section class="content-wrapper" style="min-height: 960px;">
         <section class="content-header">
             <h1>Users</h1>
+
         </section>
 
         <section class="content">

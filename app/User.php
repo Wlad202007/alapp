@@ -28,7 +28,7 @@ class User extends Authenticatable implements HasMedia
     use Notifiable;
     use HasMediaTrait, HasApiTokens;
 
-    
+
     protected $fillable = ['name', 'description', 'company', 'job', 'phone', 'email', 'password', 'remember_token'];
     protected $hidden = ['password', 'remember_token'];
     protected $appends = ['avatar', 'avatar_link', 'rate'];
@@ -106,12 +106,12 @@ class User extends Authenticatable implements HasMedia
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
         }
     }
-    
+
     public function role()
     {
         return $this->belongsToMany(Role::class, 'role_user');
     }
-    
+
     public function my_events()
     {
         return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id')->orderBy('created_at', 'desc');
@@ -155,12 +155,17 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Message::class, 'friend_id')->distinct('friend_id');
     }
 
-	 public function planners()
+	  public function planners()
     {
         return $this->belongsToMany(Planner::class, 'planner_user', 'user_id', 'planner_id');
     }
-	
-	
+
+    // public function shopping_lists()
+    //  {
+    //      return $this->belongsToMany(ShoppingList::class, 'shopping_lists_user', 'user_id', 'shoppinglist_id');
+    //  }
+
+
     public function getAllMessagesAttribute($value)
     {
         $competitionsHome = $this->myMessages;
@@ -183,7 +188,7 @@ class User extends Authenticatable implements HasMedia
     {
        $this->notify(new ResetPassword($token));
     }
-	
+
 	 public function notes()
     {
         return $this->hasMany(Note::class, 'author_id');
@@ -192,19 +197,24 @@ class User extends Authenticatable implements HasMedia
 	 public function questions()
     {
         return $this->belongsToMany(Session::class, 'session_user', 'user_id', 'session_id')->withPivot('status');
-    } 
-	
+    }
+
 	public function votes()
     {
         return $this->hasMany(Vote::class,'user_id');
     }
-	
-	
+
+    public function read_status()
+      {
+          return $this->belongsToMany(Post::class,'read_status','author_id','post_id');
+      }
+
+
 	  public function scopeOfGroup($query,$group)
-    { 
-		
-        return   $query->whereHas('joined', function ($query) use ( $group) 
+    {
+
+        return   $query->whereHas('joined', function ($query) use ( $group)
 					{  $query->where('group_id',$group);});
-		
+
     }
 }
