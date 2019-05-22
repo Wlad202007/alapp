@@ -18,8 +18,8 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 
 class MessagesController extends Controller
 {
-    
-    
+
+
     public function sendViberMsg(Request $request)
     {
         $Viber = new Viber();
@@ -34,31 +34,43 @@ class MessagesController extends Controller
     }
 
 
+    public function notifiUnRead()
+    {
+      $auth = Auth::user();
+             // GET UNREAD MSGS
+     $unreadMessages = \App\Message::where(function ($query) use ($auth) {
+         $query->where('friend_id',$auth->id)
+             ->where('read', 0);
+     })->count();
+
+      return $unreadMessages;
+    }
+
     public function my()
     {
         return Auth::user()->myMessages()->get();
     }
 
-
     public function myMessanger()
     {
         $auth = Auth::user();
 
-        $myMessages = User::whereHas('myMessages', function($q) use ($auth){
-            $q->where('author_id', $auth->id)
-              ->orWhere('friend_id', $auth->id)
-                ->orderBy('created_at', 'DESC');
-        })->with('myMessages')->orderBy('created_at', 'DESC')
-            ->get()->unique()->toArray();
+        // $myMessages = User::whereHas('myMessages', function($q) use ($auth){
+        //     $q->where('author_id', $auth->id)
+        //       ->orWhere('friend_id', $auth->id)
+        //         ->orderBy('created_at', 'DESC');
+        // })->with('myMessages')->orderBy('created_at', 'DESC')
+        //     ->get()->unique()->toArray();
 
         $friendsMessages = User::whereHas('friendsMessages', function($q) use ($auth){
             $q->where('author_id', $auth->id)
               ->orWhere('friend_id', $auth->id)
                 ->orderBy('created_at', 'DESC');
-        })->with('friendsMessages')->orderBy('created_at', 'DESC')
+        })->with('friendsMessages')->with('myMessages')->orderBy('created_at', 'DESC')
             ->get()->unique()->toArray();
 
-        $merged = array_merge($myMessages, $friendsMessages);
+            // $merged = array_merge($myMessages, $friendsMessages);
+        $merged = array_merge($friendsMessages);
 
         $final  = [];
 
@@ -68,7 +80,7 @@ class MessagesController extends Controller
             }
         }
 
-        return $final;
+        return $merged;
 
 
 
@@ -106,14 +118,31 @@ class MessagesController extends Controller
     {
         $auth = Auth::user();
 
+
+
         $messages = Message::orderBy('created_at', 'desc')
             ->where(function ($query) use ($auth, $id) {
-                $query->where('author_id',$auth->id)
-                    ->where('friend_id', $id);
-            })->orWhere(function($query) use ($auth, $id) {
-                $query->where('author_id',$id)
-                    ->where('friend_id', $auth->id);
-            })->get();
+              $query->where('author_id',$id)
+                  ->where('friend_id', $auth->id);
+            });
+
+        foreach ($messages->get() as  $message) {
+          $message->update([
+              'read' => 1
+          ]);
+          $message->save();
+        };
+
+            $messages = Message::orderBy('created_at', 'desc')
+                ->where(function ($query) use ($auth, $id) {
+                    $query->where('author_id',$auth->id)
+                        ->where('friend_id', $id);
+                })->orWhere(function($query) use ($auth, $id) {
+                    $query->where('author_id',$id)
+                        ->where('friend_id', $auth->id);
+                })->get();
+
+
 
         return $messages;
 
@@ -157,8 +186,8 @@ class MessagesController extends Controller
         return $message;
 
     }
-    
-    
+
+
     public function index()
     {
         return new MessageResource(Message::with(['users', 'author', 'group'])->get());

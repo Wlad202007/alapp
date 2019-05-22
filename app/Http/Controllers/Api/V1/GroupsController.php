@@ -19,7 +19,7 @@ class GroupsController extends Controller
     {
         return new GroupResource(Group::with([])->get());
     }
-	
+
 	 public function indexUser($user)
     {
 		//DB::connection()->enableQueryLog();
@@ -98,7 +98,7 @@ class GroupsController extends Controller
 
         return response(null, 204);
     }
-	
+
 	public function groupRelation($group,$model,$type,$id){
 		 if (Gate::denies('group_edit')) {
             return abort(401);
@@ -122,10 +122,10 @@ class GroupsController extends Controller
 			  $code=204;
 			 }
 		 }
-		 
-		 
+
+
 		   return response(null, $code);
-		
-		
+
+
 	}
 }

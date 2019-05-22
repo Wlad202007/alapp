@@ -21,7 +21,7 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 
 class UsersController extends Controller
 {
-    public function swithchReadStatus()
+    public function notifiReadStatus()
     {
         $auth = Auth::user();
         $lastMessage = 'No new posts';
@@ -37,23 +37,39 @@ class UsersController extends Controller
        $unreadMessages = \App\Post::whereIn('group_id',  $groupArray)
        ->whereDoesntHave('read_by', function($query) use ($auth){
            $query->where('author_id', '=', $auth->id);
-       });
+       })->count();
 
-       foreach ($unreadMessages->get() as  $Message) {
-          $lastMessage = $Message;
-          $auth->read_status()->attach($Message->id);
-       };
+       // foreach ($unreadMessages->get() as  $Message) {
+       //    $lastMessage = $Message;
+       //    $auth->read_status()->attach($Message->id);
+       // };
+
         // GET READ MSGS
         // $readMessages = \App\Post::whereHas('read_by', function($query) use ($auth){
         //     $query->where('author_id', '=', $auth->id);
         // })->get()->count();
 
-        return  $lastMessage;
+        return  $unreadMessages;
 
 
 
     }
+    public function swithchReadStatus()
+    {
+        $auth = Auth::user();
+        $lastMessage = 'No new posts';
 
+        $groupArray = $auth->joined()->get()->pluck('id')->toArray();
+
+       $unreadMessages = \App\Post::whereIn('group_id',  $groupArray)
+       ->whereDoesntHave('read_by', function($query) use ($auth){
+           $query->where('author_id', '=', $auth->id);
+       });
+
+       foreach ($unreadMessages->get() as  $Message) {
+          $auth->read_status()->attach($Message->id);
+       };
+    }
 
 
     public function index()
