@@ -29,6 +29,10 @@
                         </div>
 
                         <div class="box-body">
+                            <input class="col-md-6 btnbtn-default btn-sm" type="text" v-model="search" placeholder=" Search Author" >
+                        </div>
+
+                        <div class="box-body">
                             <div class="row" v-if="loading">
                                 <div class="col-xs-4 col-xs-offset-4">
                                     <div class="alert text-center">
@@ -40,7 +44,7 @@
                             <datatable
                                     v-if="!loading"
                                     :columns="columns"
-                                    :data="data"
+                                    :data="filterByUser"
                                     :total="total"
                                     :query="query"
                                     :xprops="xprops"
@@ -79,7 +83,8 @@
                     module: 'PostsIndex',
                     route: 'posts',
                     permission_prefix: 'post_'
-                }
+                },
+                search: ''
             }
         },
         created() {
@@ -91,6 +96,12 @@
         },
         computed: {
             ...mapGetters('PostsIndex', ['data', 'total', 'loading', 'relationships']),
+
+            filterByUser(){
+              return this.data.filter(d =>{
+                return d.author.name.toLowerCase().includes(this.search.toLowerCase());
+              });
+            },
     },
     watch: {
         query: {

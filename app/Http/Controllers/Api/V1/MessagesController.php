@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\StoreMessagesRequest;
 use App\Http\Requests\Admin\UpdateMessagesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Resources\UserMessage as UserMessageResource;
 
 use App\Http\Controllers\Traits\FileUploadTrait;
 
@@ -67,20 +68,21 @@ class MessagesController extends Controller
               ->orWhere('friend_id', $auth->id)
                 ->orderBy('created_at', 'DESC');
         })->with('friendsMessages')->with('myMessages')->orderBy('created_at', 'DESC')
-            ->get()->unique()->toArray();
+            ->get();
+
 
             // $merged = array_merge($myMessages, $friendsMessages);
-        $merged = array_merge($friendsMessages);
-
-        $final  = [];
-
-        foreach ($merged as $current) {
-            if ( ! in_array($current, $final)) {
-                $final[] = $current;
-            }
-        }
-
-        return $merged;
+        // $merged = array_merge($friendsMessages);
+        //
+        // $final  = [];
+        //
+        // foreach ($merged as $current) {
+        //     if ( ! in_array($current, $final)) {
+        //         $final[] = $current;
+        //     }
+        // }
+        // return $friendsMessages;
+      return  UserMessageResource::collection($friendsMessages);
 
 
 

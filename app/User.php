@@ -147,6 +147,7 @@ class User extends Authenticatable implements HasMedia
 
     public function myMessages()
     {
+
         return $this->hasMany(Message::class, 'author_id')->orderBy('created_at', 'desc');
     }
 

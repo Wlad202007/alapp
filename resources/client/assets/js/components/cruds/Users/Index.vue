@@ -30,6 +30,10 @@
                         </div>
 
                         <div class="box-body">
+                            <input class="col-md-6 btnbtn-default btn-sm" type="text" v-model="search" placeholder=" Search Name" >
+                        </div>
+
+                        <div class="box-body">
                             <div class="row" v-if="loading">
                                 <div class="col-xs-4 col-xs-offset-4">
                                     <div class="alert text-center">
@@ -41,7 +45,7 @@
                             <datatable
                                     v-if="!loading"
                                     :columns="columns"
-                                    :data="data"
+                                    :data="filterByUser"
                                     :total="total"
                                     :query="query"
                                     :xprops="xprops"
@@ -84,7 +88,8 @@ export default {
                 module: 'UsersIndex',
                 route: 'users',
                 permission_prefix: 'user_'
-            }
+            },
+            search: ''
         }
     },
     created() {
@@ -96,6 +101,12 @@ export default {
     },
     computed: {
         ...mapGetters('UsersIndex', ['data', 'total', 'loading', 'relationships']),
+
+        filterByUser(){
+          return this.data.filter(d =>{
+            return d.name.toLowerCase().includes(this.search.toLowerCase());
+          });
+        },
     },
     watch: {
         query: {

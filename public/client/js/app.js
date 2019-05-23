@@ -3415,6 +3415,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3456,7 +3460,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         module: 'EvaluationsIndex',
         route: 'evaluations',
         permission_prefix: 'evaluation_'
-      }
+      },
+      search: ''
     };
   },
   created: function created() {
@@ -3466,7 +3471,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EvaluationsIndex', ['data', 'total', 'loading', 'relationships'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EvaluationsIndex', ['data', 'total', 'loading', 'relationships']), {
+    filterByUser: function filterByUser() {
+      var _this = this;
+
+      return this.data.filter(function (d) {
+        return d.user.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }),
   watch: {
     query: {
       handler: function handler(query) {
@@ -4200,6 +4213,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -4266,7 +4283,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         module: 'EventsIndex',
         route: 'events',
         permission_prefix: 'event_'
-      }
+      },
+      search: ''
     };
   },
   created: function created() {
@@ -4276,7 +4294,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EventsIndex', ['data', 'total', 'loading', 'relationships'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EventsIndex', ['data', 'total', 'loading', 'relationships']), {
+    filterByUser: function filterByUser() {
+      var _this = this;
+
+      return this.data.filter(function (d) {
+        return d.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }),
   watch: {
     query: {
       handler: function handler(query) {
@@ -11638,6 +11664,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -11688,7 +11718,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         module: 'PostsIndex',
         route: 'posts',
         permission_prefix: 'post_'
-      }
+      },
+      search: ''
     };
   },
   created: function created() {
@@ -11698,7 +11729,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('PostsIndex', ['data', 'total', 'loading', 'relationships'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('PostsIndex', ['data', 'total', 'loading', 'relationships']), {
+    filterByUser: function filterByUser() {
+      var _this = this;
+
+      return this.data.filter(function (d) {
+        return d.author.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }),
   watch: {
     query: {
       handler: function handler(query) {
@@ -13506,6 +13545,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -13572,7 +13615,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         module: 'SessionsIndex',
         route: 'sessions',
         permission_prefix: 'session_'
-      }
+      },
+      search: ''
     };
   },
   created: function created() {
@@ -13582,7 +13626,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SessionsIndex', ['data', 'total', 'loading', 'relationships'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SessionsIndex', ['data', 'total', 'loading', 'relationships']), {
+    filterByUser: function filterByUser() {
+      var _this = this;
+
+      return this.data.filter(function (d) {
+        return d.user.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }),
   watch: {
     query: {
       handler: function handler(query) {
@@ -15124,6 +15176,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -15170,7 +15226,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         module: 'SponsorsIndex',
         route: 'sponsors',
         permission_prefix: 'sponsor_'
-      }
+      },
+      search: ''
     };
   },
   created: function created() {
@@ -15180,7 +15237,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SponsorsIndex', ['data', 'total', 'loading', 'relationships'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SponsorsIndex', ['data', 'total', 'loading', 'relationships']), {
+    filterByUser: function filterByUser() {
+      var _this = this;
+
+      return this.data.filter(function (d) {
+        return d.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }),
   watch: {
     query: {
       handler: function handler(query) {
@@ -16495,6 +16560,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -16552,7 +16621,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         module: 'UsersIndex',
         route: 'users',
         permission_prefix: 'user_'
-      }
+      },
+      search: ''
     };
   },
   created: function created() {
@@ -16562,7 +16632,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('UsersIndex', ['data', 'total', 'loading', 'relationships'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('UsersIndex', ['data', 'total', 'loading', 'relationships']), {
+    filterByUser: function filterByUser() {
+      var _this = this;
+
+      return this.data.filter(function (d) {
+        return d.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    }
+  }),
   watch: {
     query: {
       handler: function handler(query) {
@@ -54776,6 +54854,30 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "box-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "col-md-6 btnbtn-default btn-sm",
+                  attrs: { type: "text", placeholder: " Search User" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "box-body" },
@@ -54788,7 +54890,7 @@ var render = function() {
                     ? _c("datatable", {
                         attrs: {
                           columns: _vm.columns,
-                          data: _vm.data,
+                          data: _vm.filterByUser,
                           total: _vm.total,
                           query: _vm.query,
                           xprops: _vm.xprops
@@ -55752,6 +55854,30 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "box-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "col-md-6 btnbtn-default btn-sm",
+                  attrs: { type: "text", placeholder: " Search Name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "box-body" },
@@ -55764,7 +55890,7 @@ var render = function() {
                     ? _c("datatable", {
                         attrs: {
                           columns: _vm.columns,
-                          data: _vm.data,
+                          data: _vm.filterByUser,
                           total: _vm.total,
                           query: _vm.query,
                           xprops: _vm.xprops
@@ -64508,6 +64634,30 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "box-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "col-md-6 btnbtn-default btn-sm",
+                  attrs: { type: "text", placeholder: " Search Author" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "box-body" },
@@ -64520,7 +64670,7 @@ var render = function() {
                     ? _c("datatable", {
                         attrs: {
                           columns: _vm.columns,
-                          data: _vm.data,
+                          data: _vm.filterByUser,
                           total: _vm.total,
                           query: _vm.query,
                           xprops: _vm.xprops
@@ -66716,6 +66866,30 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "box-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "col-md-6 btnbtn-default btn-sm",
+                  attrs: { type: "text", placeholder: " Search Name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "box-body" },
@@ -66728,7 +66902,7 @@ var render = function() {
                     ? _c("datatable", {
                         attrs: {
                           columns: _vm.columns,
-                          data: _vm.data,
+                          data: _vm.filterByUser,
                           total: _vm.total,
                           query: _vm.query,
                           xprops: _vm.xprops
@@ -68550,6 +68724,30 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "box-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "col-md-6 btnbtn-default btn-sm",
+                  attrs: { type: "text", placeholder: " Search Name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "box-body" },
@@ -68562,7 +68760,7 @@ var render = function() {
                     ? _c("datatable", {
                         attrs: {
                           columns: _vm.columns,
-                          data: _vm.data,
+                          data: _vm.filterByUser,
                           total: _vm.total,
                           query: _vm.query,
                           xprops: _vm.xprops
@@ -70114,6 +70312,30 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "box-body" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "col-md-6 btnbtn-default btn-sm",
+                  attrs: { type: "text", placeholder: " Search Name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "box-body" },
@@ -70126,7 +70348,7 @@ var render = function() {
                     ? _c("datatable", {
                         attrs: {
                           columns: _vm.columns,
-                          data: _vm.data,
+                          data: _vm.filterByUser,
                           total: _vm.total,
                           query: _vm.query,
                           xprops: _vm.xprops
