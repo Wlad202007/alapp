@@ -18,7 +18,7 @@ function initialState() {
         sponsorsAll: [],
         agendasAll: [],
         industriesAll: [],
-       
+
         all: [],
          query: {},
           relationships: {
@@ -29,9 +29,9 @@ function initialState() {
           sponsorsrelationships: {
             'event': 'name',
         },
-	   
-             
-       
+
+
+
         loading: false,
     }
 }
@@ -43,7 +43,7 @@ const getters = {
     sponsorsAll: state => state.sponsorsAll,
     agendasAll: state => state.agendasAll,
     industriesAll: state => state.industriesAll,
-    
+
     data: state => {
         let rows = state.all
 
@@ -56,8 +56,8 @@ const getters = {
     total:         state => state.all.length,
  //   loading:       state => state.loading,
     relationships: state => state.relationships,
-    
-    
+
+
     sponsorsdata: state => {
         let rows = state.sponsorsall
 console.log('row',state.sponsorsquery.offset, state.sponsorsquery.offset + state.sponsorsquery.limit)
@@ -70,20 +70,20 @@ console.log('row',state.sponsorsquery.offset, state.sponsorsquery.offset + state
     sponsorstotal:         state => state.sponsorsall.length,
  //   loading:       state => state.loading,
     sponsorsrelationships: state => state.sponsorsrelationships
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }
 
 const actions = {
 	fetchDataSponsors({ commit, state }, event) {
        // commit('setLoading', true)
        if (event){
-	   	
-	   
+
+
 		console.log('fetchsponsors')
         axios.get('/api/v1/sponsors_event/' + event)
             .then(response => {
@@ -98,7 +98,7 @@ const actions = {
             .finally(() => {
                 commit('setLoading', false)
             })*/
-		} 
+		}
     },
 	 fetchDataAgenda({ commit, state }, event) {
        // commit('setLoading', true)
@@ -139,8 +139,8 @@ const actions = {
 	 destroyDataSponsors({ commit, state },event) {
 	 	console.log('++',event.event,event.id);
 	 	if(event.event && event.id){
-			
-		
+
+
         axios.get('/api/v1/event_relation/' + event.event + '/sponsors/del/' + event.id)
             .then(response => {
             	console.log(event.id)
@@ -158,8 +158,8 @@ const actions = {
      addDataSponsors({ commit, state },event) {
 	 	console.log('++',event.event,event.id);
 	 	if(event.event && event.id){
-			
-		
+
+
         axios.get('/api/v1/event_relation/' + event.event + '/sponsors/add/' + event.id)
             .then(response => {
                dispatch('fetchDataSponsors',event.event)
@@ -171,7 +171,7 @@ const actions = {
             })
 		}
     },
-		
+
     storeData({ commit, state, dispatch }) {
         commit('setLoading', true)
         dispatch('Alert/resetState', null, { root: true })
@@ -372,7 +372,7 @@ const actions = {
     setFull_agenda({ commit }, value) {
         commit('setFull_agenda', value)
     },
-    
+
     setWeb_url({ commit }, value) {
         commit('setWeb_url', value)
     },
@@ -442,11 +442,11 @@ const mutations = {
     setIndustriesAll(state, value) {
         state.industriesAll = value
     },
-    
+
     setLoading(state, loading) {
         state.loading = loading
     },
-    
+
      setAll(state, items) {
      	console.log('seta',items)
         state.all = items

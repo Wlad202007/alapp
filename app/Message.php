@@ -20,11 +20,11 @@ class Message extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    
-    protected $fillable = ['body', 'read', 'author_id', 'friend_id', 'group_id'];
+
+    protected $fillable = ['body', 'read','notifi', 'author_id', 'friend_id', 'group_id'];
     protected $appends = ['time','attachments', 'attachments_link', 'uploaded_attachments'];
     protected $with = ['media','author','friend'];
-    
+
 
     public static function storeValidation($request)
     {
@@ -85,7 +85,7 @@ class Message extends Model implements HasMedia
 
         return implode('<br/>', $html);
     }
-    
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'message_user');
@@ -100,11 +100,11 @@ class Message extends Model implements HasMedia
     {
         return $this->belongsTo(User::class, 'friend_id');
     }
-    
+
     public function group()
     {
         return $this->belongsTo(Event::class, 'group_id')->withTrashed();
     }
-    
-    
+
+
 }

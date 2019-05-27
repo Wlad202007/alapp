@@ -19,7 +19,7 @@ class Post extends Model implements HasMedia
     use SoftDeletes, HasMediaTrait;
 
 
-    protected $fillable = ['body', 'group_id', 'author_id'];
+    protected $fillable = ['body', 'notifi','group_id', 'author_id'];
     protected $appends = ['gallery', 'gallery_link', 'uploaded_gallery','comments_count','likes_count'];
     protected $with = ['media','author','comments','likes'];
 
@@ -95,6 +95,11 @@ class Post extends Model implements HasMedia
     public function read_by()
     {
         return $this->belongsToMany(User::class,'read_status','post_id','author_id');
+    }
+
+    public function notifi_by()
+    {
+        return $this->belongsToMany(User::class,'notifi_status','post_id','author_id');
     }
 
     public function author()

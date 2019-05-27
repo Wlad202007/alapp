@@ -24,8 +24,7 @@ class UsersController extends Controller
     public function notifiReadStatus()
     {
         $auth = Auth::user();
-        $lastMessage = 'No new posts';
-        // $post_id = $id;
+
         $groupArray = $auth->joined()->get()->pluck('id')->toArray();
         // $post_id = \App\Post::all()->first()->id; // NEED TO BE REPLACED WITH POST ID FROM REQUEST!!!
         // return $auth->joined()->Select('id')->get()->toArray();
@@ -50,14 +49,30 @@ class UsersController extends Controller
         // })->get()->count();
 
         return  $unreadMessages;
-
-
-
     }
+
+    public function localnotifiUnRead()
+    {
+     $auth = Auth::user();
+     $groupArray = $auth->joined()->get()->pluck('id')->toArray();
+
+     $notifiMessages = \App\Post::whereIn('group_id',  $groupArray)
+     ->whereDoesntHave('notifi_by', function($query) use ($auth){
+         $query->where('author_id', '=', $auth->id);
+     });
+
+     $nowmatch = $notifiMessages->count();
+
+     foreach ($notifiMessages->get() as  $Message) {
+        $auth->notifi_status()->attach($Message->id);
+     };
+
+      return $nowmatch;
+    }
+
     public function swithchReadStatus()
     {
         $auth = Auth::user();
-        $lastMessage = 'No new posts';
 
         $groupArray = $auth->joined()->get()->pluck('id')->toArray();
 

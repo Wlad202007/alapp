@@ -23,11 +23,11 @@ class Event extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    
+
     protected $fillable = ['name', 'description', 'address', 'date_from', 'date_to', 'web_url', 'industry_id'];
-    protected $appends = ['full_agenda', 'full_agenda_link', 'my_event', 'liked', 'interested'];
+    protected $appends = ['full_agenda' ,'full_agenda_link', 'my_event', 'liked', 'interested'];
     protected $with = ['media'];
-    
+
 
     public static function storeValidation($request)
     {
@@ -69,7 +69,7 @@ class Event extends Model implements HasMedia
         ];
     }
 
-    
+
 
     /**
      * Set attribute to date format
@@ -136,22 +136,22 @@ class Event extends Model implements HasMedia
 
         return '<a href="' . $file->getUrl() . '" target="_blank">' . $file->file_name . '</a>';
     }
-    
+
     public function attendees()
     {
         return $this->belongsToMany(User::class, 'event_user');
     }
-    
+
     public function sponsors()
     {
         return $this->belongsToMany(Sponsor::class, 'event_sponsor');//->withTrashed();
     }
-    
+
     public function agenda()
     {
         return $this->belongsToMany(Agenda::class, 'agenda_event');//->withTrashed();
     }
-    
+
     public function industry()
     {
         return $this->belongsTo(Industry::class, 'industry_id');//->withTrashed();
@@ -202,16 +202,20 @@ class Event extends Model implements HasMedia
     {
         return $this->hasMany(Agenda::class, 'event_id')->orderBy('time', 'asc');
     }
-    
+    public function agenda_model_request()
+    {
+        return $this->hasMany(AgendaRequest::class,'event_id');
+    }
+
 	public function messages()
     {
         return $this->hasMany(Message::class, 'group_id');//->withTrashed();
     }
 	      public function scopeOfUser($query,$user)
-    { 
-		
-        return   $query->whereHas('attendees', function ($query) use ( $user) 
+    {
+
+        return   $query->whereHas('attendees', function ($query) use ( $user)
 					{  $query->where('user_id',$user);});
-		
+
     }
 }

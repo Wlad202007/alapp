@@ -4151,8 +4151,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Events_dtmodules_DatatableActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Events/dtmodules/DatatableActions */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableActions.vue");
 /* harmony import */ var _dtmodules_DatatableSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../dtmodules/DatatableSingle */ "./resources/client/assets/js/components/dtmodules/DatatableSingle.vue");
 /* harmony import */ var _dtmodules_DatatableList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../dtmodules/DatatableList */ "./resources/client/assets/js/components/dtmodules/DatatableList.vue");
-/* harmony import */ var _dtmodules_DatatableCheckbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../dtmodules/DatatableCheckbox */ "./resources/client/assets/js/components/dtmodules/DatatableCheckbox.vue");
-/* harmony import */ var _dtmodules_DatatableFullAgendaField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dtmodules/DatatableFullAgendaField */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue");
+/* harmony import */ var _dtmodules_DatatableCounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dtmodules/DatatableCounter */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue");
+/* harmony import */ var _dtmodules_DatatableTodayCounter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dtmodules/DatatableTodayCounter */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue");
+/* harmony import */ var _dtmodules_DatatableCheckbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../dtmodules/DatatableCheckbox */ "./resources/client/assets/js/components/dtmodules/DatatableCheckbox.vue");
+/* harmony import */ var _dtmodules_DatatableFullAgendaField__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dtmodules/DatatableFullAgendaField */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -4223,6 +4225,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4245,7 +4249,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sortable: true
       }, {
         title: 'Full agenda',
-        tdComp: _dtmodules_DatatableFullAgendaField__WEBPACK_IMPORTED_MODULE_5__["default"],
+        tdComp: _dtmodules_DatatableFullAgendaField__WEBPACK_IMPORTED_MODULE_7__["default"],
         sortable: false
       }, {
         title: 'Web url',
@@ -4263,6 +4267,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: 'Agenda',
         field: 'agenda',
         tdComp: _dtmodules_DatatableList__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }, {
+        title: 'All Agenda Requests',
+        field: 'agenda_model_request',
+        tdComp: _dtmodules_DatatableCounter__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }, {
+        title: 'Today Agenda Requests',
+        field: 'agenda_model_request',
+        tdComp: _dtmodules_DatatableTodayCounter__WEBPACK_IMPORTED_MODULE_5__["default"]
       }, {
         title: 'Industry',
         field: 'industry',
@@ -5502,6 +5514,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['value', 'field'],
+  data: function data() {
+    return {// Code...
+    };
+  },
+  computed: {
+    roots: function roots() {
+      return this.$root;
+    }
+  },
+  created: function created() {// Code...
+  },
+  methods: {// Code...
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue?vue&type=script&lang=js& ***!
@@ -5593,6 +5644,55 @@ __webpack_require__.r(__webpack_exports__);
   methods: {// Code...
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function($) {//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['value', 'field'],
+  data: function data() {
+    return {};
+  },
+  computed: {
+    roots: function roots() {
+      return this.$root;
+    },
+    request: function request() {
+      var list = [];
+      var thisDay = new Date().toISOString().slice(0, 10);
+      $.each(this.value, function (key, item) {
+        if (item.created_at.slice(0, 10) == thisDay) {
+          list.push(item.created_at);
+        }
+      });
+      return list;
+    }
+  },
+  created: function created() {// Code...
+  },
+  methods: {// Code...
+  }
+});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
@@ -57512,6 +57612,34 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("span", { staticClass: "label label-info" }, [
+      _vm._v("\n        " + _vm._s(_vm.value.length) + "\n    ")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue?vue&type=template&id=00fb7ea8&":
 /*!****************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue?vue&type=template&id=00fb7ea8& ***!
@@ -57599,6 +57727,34 @@ var render = function() {
           )
         ])
       : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("span", { staticClass: "label label-info" }, [
+      _vm._v("\n        " + _vm._s(_vm.request.length) + "\n    ")
+    ])
   ])
 }
 var staticRenderFns = []
@@ -75342,6 +75498,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue":
+/*!*******************************************************************************************!*\
+  !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DatatableCounter_vue_vue_type_template_id_65fcb2e9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true& */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true&");
+/* harmony import */ var _DatatableCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DatatableCounter.vue?vue&type=script&lang=js& */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DatatableCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DatatableCounter_vue_vue_type_template_id_65fcb2e9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DatatableCounter_vue_vue_type_template_id_65fcb2e9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "65fcb2e9",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DatatableCounter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true&":
+/*!**************************************************************************************************************************************!*\
+  !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true& ***!
+  \**************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableCounter_vue_vue_type_template_id_65fcb2e9_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableCounter.vue?vue&type=template&id=65fcb2e9&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableCounter_vue_vue_type_template_id_65fcb2e9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableCounter_vue_vue_type_template_id_65fcb2e9_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue":
 /*!***************************************************************************************************!*\
   !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableFullAgendaField.vue ***!
@@ -75544,6 +75769,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableSingle_vue_vue_type_template_id_5c36282a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableSingle_vue_vue_type_template_id_5c36282a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue":
+/*!************************************************************************************************!*\
+  !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DatatableTodayCounter_vue_vue_type_template_id_56ae355e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true& */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true&");
+/* harmony import */ var _DatatableTodayCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DatatableTodayCounter.vue?vue&type=script&lang=js& */ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DatatableTodayCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DatatableTodayCounter_vue_vue_type_template_id_56ae355e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DatatableTodayCounter_vue_vue_type_template_id_56ae355e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "56ae355e",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableTodayCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DatatableTodayCounter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableTodayCounter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true&":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true& ***!
+  \*******************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableTodayCounter_vue_vue_type_template_id_56ae355e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/client/assets/js/components/cruds/Events/dtmodules/DatatableTodayCounter.vue?vue&type=template&id=56ae355e&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableTodayCounter_vue_vue_type_template_id_56ae355e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DatatableTodayCounter_vue_vue_type_template_id_56ae355e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -85075,7 +85369,8 @@ function initialState() {
       'attendees': 'name',
       'sponsors': 'name',
       'agenda': 'text',
-      'industry': 'name'
+      'industry': 'name',
+      'agenda_requests': 'name'
     },
     query: {},
     loading: false

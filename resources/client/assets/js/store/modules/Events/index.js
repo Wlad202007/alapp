@@ -6,9 +6,10 @@ function initialState() {
             'sponsors': 'name',
             'agenda': 'text',
             'industry': 'name',
+            'agenda_requests':'name'
         },
         query: {},
-        loading: false
+        loading: false,
     }
 }
 

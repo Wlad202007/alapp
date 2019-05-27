@@ -63,6 +63,8 @@ import { mapGetters, mapActions } from 'vuex'
 import DatatableActions from '../Events/dtmodules/DatatableActions'
 import DatatableSingle from '../../dtmodules/DatatableSingle'
 import DatatableList from '../../dtmodules/DatatableList'
+import DatatableCounter from './dtmodules/DatatableCounter'
+import DatatableTodayCounter from './dtmodules/DatatableTodayCounter'
 import DatatableCheckbox from '../../dtmodules/DatatableCheckbox'
 import DatatableFullAgendaField from './dtmodules/DatatableFullAgendaField'
 
@@ -80,6 +82,8 @@ export default {
                 { title: 'Attendees', field: 'attendees', tdComp: DatatableList },
                 { title: 'Sponsors', field: 'sponsors', tdComp: DatatableList },
                 { title: 'Agenda', field: 'agenda', tdComp: DatatableList },
+                { title: 'All Agenda Requests', field: 'agenda_model_request', tdComp: DatatableCounter },
+                { title: 'Today Agenda Requests', field: 'agenda_model_request', tdComp: DatatableTodayCounter },
                 { title: 'Industry', field: 'industry', tdComp: DatatableSingle },
                 { title: 'Actions', tdComp: DatatableActions, visible: true, thClass: 'text-right', tdClass: 'text-right', colStyle: 'width: 130px;' }
             ],
@@ -89,7 +93,7 @@ export default {
                 route: 'events',
                 permission_prefix: 'event_'
             },
-            search: ''
+            search: '',
         }
     },
     created() {
@@ -107,6 +111,7 @@ export default {
             return d.name.toLowerCase().includes(this.search.toLowerCase());
           });
         },
+
     },
     watch: {
         query: {

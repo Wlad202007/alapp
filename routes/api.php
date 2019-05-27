@@ -5,6 +5,9 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::get('switch-read-status', 'UsersController@swithchReadStatus');
     Route::get('notifi-read-status', 'UsersController@notifiReadStatus');
 
+    Route::get('notifi-posts', 'UsersController@localnotifiUnRead');
+
+
     Route::get('shopping-lists', 'ShoppingListsController@index');
     Route::get('shopping-lists/{id}', 'ShoppingListsController@show');
     Route::get('shoppings', 'ShoppingsController@index');
@@ -35,6 +38,7 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
     Route::get('my-messages', 'MessagesController@my');
     Route::get('messanger', 'MessagesController@myMessanger');
     Route::get('notifi-unread-messages', 'MessagesController@notifiUnRead');
+    Route::get('notifi-messages', 'MessagesController@localnotifiUnRead');
 
     Route::get('personal-dialog/{id}', 'MessagesController@personalDialog');
     Route::post('send-personal-msg', 'MessagesController@sendPersonalMsg');

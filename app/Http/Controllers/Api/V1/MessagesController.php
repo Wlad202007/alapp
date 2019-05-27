@@ -47,6 +47,27 @@ class MessagesController extends Controller
       return $unreadMessages;
     }
 
+    public function localnotifiUnRead()
+    {
+     $auth = Auth::user();
+
+     $notifiMessages = \App\Message::where(function ($query) use ($auth) {
+         $query->where('friend_id',$auth->id)
+             ->where('notifi', 0);
+     });
+
+     $nowmatch = $notifiMessages->count();
+
+     foreach ($notifiMessages->get() as  $notifi) {
+       $notifi->update([
+           'notifi' => 1
+       ]);
+       $notifi->save();
+     };
+
+      return $nowmatch;
+    }
+
     public function my()
     {
         return Auth::user()->myMessages()->get();

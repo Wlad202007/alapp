@@ -21,7 +21,7 @@ class EventsController extends Controller
     {
 
 
-        return new EventResource(Event::with(['attendees', 'sponsors', 'agenda', 'industry'])->get());
+        return new EventResource(Event::with(['attendees', 'agenda_requests','sponsors', 'agenda', 'agenda_model_request' ,'industry'])->get());
     }
     public function allIndex(request $request)
     {
@@ -75,7 +75,17 @@ class EventsController extends Controller
     {
 
         $event = Event::findOrFail($id);
-        $event->agenda_requests()->sync([Auth::user()->id]);
+        $auth = Auth::user();
+
+        $check = $event->whereHas('agenda_requests', function($q) use ($auth, $id){
+            $q->where('user_id', $auth->id);
+            $q->where('event_id', $id);
+        })->count();
+
+         if ($check == 0)
+         {
+           $event->agenda_requests()->attach([Auth::user()->id]);
+         }
 
         return $event;
 
