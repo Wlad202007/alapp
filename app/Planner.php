@@ -63,7 +63,7 @@ class Planner extends Model
 
     public function getShortTimeAttribute()
     {
-       return Carbon::parse($this->time)->format('h:s');
+       return Carbon::parse($this->time)->format('H:i');
     }
 
     /**

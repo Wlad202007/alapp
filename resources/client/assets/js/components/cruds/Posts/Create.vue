@@ -81,7 +81,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="form-group">
+                                <div style=" opacity: 0; " class="form-group">
                                     <label for="parent">Parent</label>
                                     <v-select
                                             name="parent"
