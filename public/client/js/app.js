@@ -3471,13 +3471,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EvaluationsIndex', ['data', 'total', 'loading', 'relationships']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EvaluationsIndex', ['data', 'total', 'loading', 'relationships', 'all_data']), {
     filterByUser: function filterByUser() {
       var _this = this;
 
-      return this.data.filter(function (d) {
-        return d.user.name.toLowerCase().includes(_this.search.toLowerCase());
-      });
+      if (this.search == '') {
+        return this.data;
+      } else {
+        return this.all_data.filter(function (d) {
+          return d.name.toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
     }
   }),
   watch: {
@@ -4306,13 +4310,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EventsIndex', ['data', 'total', 'loading', 'relationships']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('EventsIndex', ['data', 'total', 'loading', 'relationships', 'all_data']), {
     filterByUser: function filterByUser() {
       var _this = this;
 
-      return this.data.filter(function (d) {
-        return d.name.toLowerCase().includes(_this.search.toLowerCase());
-      });
+      if (this.search == '') {
+        return this.data;
+      } else {
+        return this.all_data.filter(function (d) {
+          return d.name.toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
     }
   }),
   watch: {
@@ -11829,13 +11837,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('PostsIndex', ['data', 'total', 'loading', 'relationships']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('PostsIndex', ['data', 'total', 'loading', 'relationships', 'all_data']), {
     filterByUser: function filterByUser() {
       var _this = this;
 
-      return this.data.filter(function (d) {
-        return d.author.name.toLowerCase().includes(_this.search.toLowerCase());
-      });
+      if (this.search == '') {
+        return this.data;
+      } else {
+        return this.all_data.filter(function (d) {
+          return d.name.toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
     }
   }),
   watch: {
@@ -13726,13 +13738,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SessionsIndex', ['data', 'total', 'loading', 'relationships']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SessionsIndex', ['data', 'total', 'loading', 'relationships', 'all_data']), {
     filterByUser: function filterByUser() {
       var _this = this;
 
-      return this.data.filter(function (d) {
-        return d.user.name.toLowerCase().includes(_this.search.toLowerCase());
-      });
+      if (this.search == '') {
+        return this.data;
+      } else {
+        return this.all_data.filter(function (d) {
+          return d.name.toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
     }
   }),
   watch: {
@@ -15337,13 +15353,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SponsorsIndex', ['data', 'total', 'loading', 'relationships']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('SponsorsIndex', ['data', 'total', 'loading', 'relationships', 'all_data']), {
     filterByUser: function filterByUser() {
       var _this = this;
 
-      return this.data.filter(function (d) {
-        return d.name.toLowerCase().includes(_this.search.toLowerCase());
-      });
+      if (this.search == '') {
+        return this.data;
+      } else {
+        return this.all_data.filter(function (d) {
+          return d.name.toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
     }
   }),
   watch: {
@@ -16732,13 +16752,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   destroyed: function destroyed() {
     this.resetState();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('UsersIndex', ['data', 'total', 'loading', 'relationships']), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('UsersIndex', ['data', 'total', 'loading', 'relationships', 'all_data']), {
     filterByUser: function filterByUser() {
       var _this = this;
 
-      return this.data.filter(function (d) {
-        return d.name.toLowerCase().includes(_this.search.toLowerCase());
-      });
+      if (this.search == '') {
+        return this.data;
+      } else {
+        return this.all_data.filter(function (d) {
+          return d.name.toLowerCase().includes(_this.search.toLowerCase());
+        });
+      }
     }
   }),
   watch: {
@@ -85051,6 +85075,9 @@ var getters = {
 
     return rows.slice(state.query.offset, state.query.offset + state.query.limit);
   },
+  all_data: function all_data(state) {
+    return state.all;
+  },
   total: function total(state) {
     return state.all.length;
   },
@@ -85386,6 +85413,9 @@ var getters = {
     }
 
     return rows.slice(state.query.offset, state.query.offset + state.query.limit);
+  },
+  all_data: function all_data(state) {
+    return state.all;
   },
   total: function total(state) {
     return state.all.length;
@@ -88907,6 +88937,9 @@ var getters = {
 
     return rows.slice(state.query.offset, state.query.offset + state.query.limit);
   },
+  all_data: function all_data(state) {
+    return state.all;
+  },
   total: function total(state) {
     return state.all.length;
   },
@@ -89956,6 +89989,9 @@ var getters = {
 
     return rows.slice(state.query.offset, state.query.offset + state.query.limit);
   },
+  all_data: function all_data(state) {
+    return state.all;
+  },
   total: function total(state) {
     return state.all.length;
   },
@@ -90344,6 +90380,9 @@ var getters = {
 
     return rows.slice(state.query.offset, state.query.offset + state.query.limit);
   },
+  all_data: function all_data(state) {
+    return state.all;
+  },
   total: function total(state) {
     return state.all.length;
   },
@@ -90640,6 +90679,9 @@ var getters = {
     }
 
     return rows.slice(state.query.offset, state.query.offset + state.query.limit);
+  },
+  all_data: function all_data(state) {
+    return state.all;
   },
   total: function total(state) {
     return state.all.length;

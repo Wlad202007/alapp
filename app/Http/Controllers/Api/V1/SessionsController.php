@@ -17,11 +17,11 @@ class SessionsController extends Controller
 {
     public function index()
     {
-        
+
 
         return new SessionResource(Session::with(['user', 'event'])->voteCount()->get());
     }
-	
+
 	 public function indexUser($user)
     {
 		//DB::connection()->enableQueryLog();
@@ -49,7 +49,7 @@ class SessionsController extends Controller
         }
 
         $session = Session::create($request->all());
-        
+
         if ($request->hasFile('presentation')) {
             $session->addMedia($request->file('presentation'))->toMediaCollection('presentation');
         }
@@ -67,7 +67,7 @@ class SessionsController extends Controller
 
         $session = Session::findOrFail($id);
         $session->update($request->all());
-        
+
         if (! $request->input('presentation') && $session->getFirstMedia('presentation')) {
             $session->getFirstMedia('presentation')->delete();
         }
@@ -91,41 +91,42 @@ class SessionsController extends Controller
 
         return response(null, 204);
     }
-	
+
 	/**************************
 	**$type = yes/no set vote
 	**$type = del - delete vote
 	*************************/
-	
-	    public function vote($type,$id,$user)
-    {
-//        if (Gate::denies('vote_create')) {
-//            return abort(401);
-//        }
 
-            $user = null;
-            $user_id = \Auth::user()->id;
+  public function vote($type,$id,$user)
+      {
 
-        $session = Session::findOrFail($id);
-		if($type == 'del'){
-			$session->questions()->sync([]);
-		}elseif($type == 'yes' or $type == 'no') {
-            $session->questions()->updateExistingPivot($user_id, ['status'=> $type], false);
+          $user = null;
+          $user_id = \Auth::user()->id;
 
-//            if($type == 'yes') {
-//                $session->questions()->attach([$user_id =>['status'=> 'yes']]);
-//                $session->questions()->detach([$user_id =>['status'=> 'no']]);
-//            }elseif($type == 'no') {
-//                $session->questions()->attach([$user_id =>['status'=> 'no']]);
-//                $session->questions()->detach([$user_id =>['status'=> 'yes']]);
-//            }
-
-        }
+          $session = Session::findOrFail($id);
 
 
-        return response(null, 202);
-    }
-	
+          $attachUser = \App\Session::
+            whereHas('questions', function($query) use ($user_id,$id){
+                $query->where('session_id', $id)->where('user_id', '=', $user_id);
+            })->count();
+
+      		if($type == 'del'){
+      			$session->questions()->sync([]);
+      		}
+
+          elseif($type == 'yes' || $type == 'no') {
+                  if ($attachUser === 0){
+                      $session->questions()->attach([$user_id =>['status'=> $type]]);
+                  }
+                  else {
+                      $session->questions()->updateExistingPivot($user_id, ['status'=> $type], false);
+                  }
+           }
+
+          return response(null, 202);
+      }
+
 	    public function votes($id)
     {
 //        if (Gate::denies('vote_view')) {
@@ -133,9 +134,14 @@ class SessionsController extends Controller
 //        }
 
         $session = Session::where('id',$id)->voteCount()->first();
-		
 
+        // if ($session->votes_yes === 0 && $session->votes_no === 0) {
+        //   return 'true';
+        // }
+        // else{
+        //   return 'false';
+        // }
         return new SessionResource($session);
     }
-	
+
 }

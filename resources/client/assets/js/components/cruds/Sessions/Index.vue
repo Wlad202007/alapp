@@ -99,12 +99,17 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('SessionsIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('SessionsIndex', ['data', 'total', 'loading', 'relationships','all_data']),
 
         filterByUser(){
-          return this.data.filter(d =>{
-            return d.user.name.toLowerCase().includes(this.search.toLowerCase());
-          });
+          if (this.search == '') {
+            return this.data;
+          }
+          else {
+            return this.all_data.filter(d =>{
+              return d.name.toLowerCase().includes(this.search.toLowerCase());
+            });
+          }
         },
     },
     watch: {

@@ -1,5 +1,9 @@
 <?php
 
+Route::get('livepoll', function(){
+    return view('livepoll');
+});
+
 
 Route::group(['before'=>'csrf'], function () {
     Route::get('x-csrf-token', 'Api\V1\UsersController@xCsrfToken')->name('auth.x-csrf-token');

@@ -104,12 +104,17 @@ export default {
         this.resetState()
     },
     computed: {
-        ...mapGetters('EventsIndex', ['data', 'total', 'loading', 'relationships']),
+        ...mapGetters('EventsIndex', ['data', 'total', 'loading', 'relationships','all_data']),
 
         filterByUser(){
-          return this.data.filter(d =>{
-            return d.name.toLowerCase().includes(this.search.toLowerCase());
-          });
+          if (this.search == '') {
+            return this.data;
+          }
+          else {
+            return this.all_data.filter(d =>{
+              return d.name.toLowerCase().includes(this.search.toLowerCase());
+            });
+          }
         },
 
     },

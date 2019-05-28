@@ -2,7 +2,7 @@ function initialState() {
     return {
         all: [],
         relationships: {
-            
+
         },
         query: {},
         loading: false
@@ -19,6 +19,7 @@ const getters = {
 
         return rows.slice(state.query.offset, state.query.offset + state.query.limit)
     },
+    all_data:      state => state.all,
     total:         state => state.all.length,
     loading:       state => state.loading,
     relationships: state => state.relationships
