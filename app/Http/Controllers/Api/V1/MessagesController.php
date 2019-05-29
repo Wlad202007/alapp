@@ -77,63 +77,37 @@ class MessagesController extends Controller
     {
         $auth = Auth::user();
 
-        // $myMessages = User::whereHas('myMessages', function($q) use ($auth){
-        //     $q->where('author_id', $auth->id)
-        //       ->orWhere('friend_id', $auth->id)
-        //         ->orderBy('created_at', 'DESC');
-        // })->with('myMessages')->orderBy('created_at', 'DESC')
-        //     ->get()->unique()->toArray();
-
-        $friendsMessages = User::whereHas('friendsMessages', function($q) use ($auth){
-            $q->where('author_id', $auth->id)
-              ->orWhere('friend_id', $auth->id)
-                ->orderBy('created_at', 'DESC');
-        })->with('friendsMessages')->with('myMessages')->orderBy('created_at', 'DESC')
+        $allmsg = Message::where('author_id', \Auth::user()->id)
+            ->whereNotNull('author_id')
+            ->whereNotNull('friend_id')
+            ->where('group_id', null)
+            ->orWhere('friend_id', \Auth::user()->id)
             ->get();
 
+        $array = [];
+        $auth_id = $auth->id;
 
-            // $merged = array_merge($myMessages, $friendsMessages);
-        // $merged = array_merge($friendsMessages);
-        //
-        // $final  = [];
-        //
-        // foreach ($merged as $current) {
-        //     if ( ! in_array($current, $final)) {
-        //         $final[] = $current;
-        //     }
-        // }
-        // return $friendsMessages;
-      return  UserMessageResource::collection($friendsMessages);
+        foreach($allmsg as $msg){
 
+            if($msg->friend_id==$auth_id){
+                $array[$msg->author_id] = [
+                    'type' => '0',
+                    'author'=> $msg->author,
+                    'body'=> $msg->body,
+                    'time'=> $msg->created_at,
+                ];
+            }elseif($msg->author_id == $auth_id){
+                $array[$msg->friend_id] = [
+                    'type' => '1',
+                    'author'=> $msg->friend,
+                    'body'=> $msg->body,
+                    'time'=> $msg->created_at,
+                ];
+            }
 
-
-//        return Message::orderBy('created_at', 'desc')
-//            ->where('author_id', $auth->id)
-//            ->orWhere('friend_id', $auth->id)
-//            ->get()
-//            ->unique(['author_id', 'friend_id']);
-
-
-//        return User::whereHas('myMessages', function($q) use ($auth){
-//            $q->where('author_id', $auth->id)
-//              ->orWhere('friend_id', $auth->id);
-//        })->with([ 'myMessages' => function($query) use ($auth) {
-//            $query->where('author_id', $auth->id)
-//                  ->orWhere('friend_id', $auth->id)
-//                  ->orderBy('created_at', 'desc')
-//                  ->limit(1);
-//        }])->get();
-
-
-
-
-//        return Message::orderBy('created_at', 'desc')
-//            ->where('author_id', $auth->id)
-//            ->orWhere('friend_id', $auth->id)
-//            ->get();
-
-//        select('friend_id', 'body', 'created_at')
-//        ->distinct(['friend_id'])
+        }
+        $allmsg = null;
+        return $array;
     }
 
 
