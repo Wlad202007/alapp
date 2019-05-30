@@ -82,6 +82,7 @@ class MessagesController extends Controller
             ->whereNotNull('friend_id')
             ->where('group_id', null)
             ->orWhere('friend_id', \Auth::user()->id)
+            ->orderBy('created_at')
             ->get();
 
         $array = [];
@@ -107,6 +108,10 @@ class MessagesController extends Controller
 
         }
         $allmsg = null;
+        
+        $array_sorted = array_column($array, 'time');
+        array_multisort($array_sorted, SORT_ASC, $array);
+
         return $array;
     }
 
