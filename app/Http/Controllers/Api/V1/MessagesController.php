@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Resources\UserMessage as UserMessageResource;
 
+
 use App\Http\Controllers\Traits\FileUploadTrait;
 
 
@@ -34,7 +35,13 @@ class MessagesController extends Controller
         ));
     }
 
+    public function SendPush($id){
+      \OneSignal::sendNotificationToUser(
+      "Some Message",
+      $userId = $id
+      );
 
+    }
     public function notifiUnRead()
     {
       $auth = Auth::user();
@@ -108,7 +115,7 @@ class MessagesController extends Controller
 
         }
         $allmsg = null;
-        
+
         $array_sorted = array_column($array, 'time');
         array_multisort($array_sorted, SORT_ASC, $array);
 

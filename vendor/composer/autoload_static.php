@@ -178,6 +178,7 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
         'B' => 
         array (
             'BeyondCode\\DumpServer\\' => 22,
+            'Berkayk\\OneSignal\\' => 18,
         ),
         'A' => 
         array (
@@ -489,6 +490,10 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
         ),
+        'Berkayk\\OneSignal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/berkayk/onesignal-laravel/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -529,6 +534,7 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
 
     public static $classMap = array (
         'App\\Agenda' => __DIR__ . '/../..' . '/app/Agenda.php',
+        'App\\AgendaRequest' => __DIR__ . '/../..' . '/app/AgendaRequest.php',
         'App\\Answer' => __DIR__ . '/../..' . '/app/Answer.php',
         'App\\Card' => __DIR__ . '/../..' . '/app/Card.php',
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
@@ -556,6 +562,8 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
         'App\\Http\\Controllers\\Api\\V1\\RolesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/RolesController.php',
         'App\\Http\\Controllers\\Api\\V1\\RulesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/RulesController.php',
         'App\\Http\\Controllers\\Api\\V1\\SessionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/SessionsController.php',
+        'App\\Http\\Controllers\\Api\\V1\\ShoppingListsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/ShoppingListsController.php',
+        'App\\Http\\Controllers\\Api\\V1\\ShoppingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/ShoppingsController.php',
         'App\\Http\\Controllers\\Api\\V1\\SponsorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/SponsorsController.php',
         'App\\Http\\Controllers\\Api\\V1\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/UsersController.php',
         'App\\Http\\Controllers\\Api\\V1\\UsersLikesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/UsersLikesController.php',
@@ -623,10 +631,12 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
         'App\\Http\\Resources\\Comment' => __DIR__ . '/../..' . '/app/Http/Resources/Comment.php',
         'App\\Http\\Resources\\Evaluation' => __DIR__ . '/../..' . '/app/Http/Resources/Evaluation.php',
         'App\\Http\\Resources\\Event' => __DIR__ . '/../..' . '/app/Http/Resources/Event.php',
+        'App\\Http\\Resources\\FriendMessage' => __DIR__ . '/../..' . '/app/Http/Resources/FriendMessage.php',
         'App\\Http\\Resources\\Group' => __DIR__ . '/../..' . '/app/Http/Resources/Group.php',
         'App\\Http\\Resources\\Industry' => __DIR__ . '/../..' . '/app/Http/Resources/Industry.php',
         'App\\Http\\Resources\\Like' => __DIR__ . '/../..' . '/app/Http/Resources/Like.php',
         'App\\Http\\Resources\\Message' => __DIR__ . '/../..' . '/app/Http/Resources/Message.php',
+        'App\\Http\\Resources\\MyMessage' => __DIR__ . '/../..' . '/app/Http/Resources/MyMessage.php',
         'App\\Http\\Resources\\Note' => __DIR__ . '/../..' . '/app/Http/Resources/Note.php',
         'App\\Http\\Resources\\Permission' => __DIR__ . '/../..' . '/app/Http/Resources/Permission.php',
         'App\\Http\\Resources\\Planner' => __DIR__ . '/../..' . '/app/Http/Resources/Planner.php',
@@ -635,8 +645,11 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
         'App\\Http\\Resources\\Role' => __DIR__ . '/../..' . '/app/Http/Resources/Role.php',
         'App\\Http\\Resources\\Rule' => __DIR__ . '/../..' . '/app/Http/Resources/Rule.php',
         'App\\Http\\Resources\\Session' => __DIR__ . '/../..' . '/app/Http/Resources/Session.php',
+        'App\\Http\\Resources\\Shopping' => __DIR__ . '/../..' . '/app/Http/Resources/Shopping.php',
+        'App\\Http\\Resources\\ShoppingList' => __DIR__ . '/../..' . '/app/Http/Resources/ShoppingList.php',
         'App\\Http\\Resources\\Sponsor' => __DIR__ . '/../..' . '/app/Http/Resources/Sponsor.php',
         'App\\Http\\Resources\\User' => __DIR__ . '/../..' . '/app/Http/Resources/User.php',
+        'App\\Http\\Resources\\UserMessage' => __DIR__ . '/../..' . '/app/Http/Resources/UserMessage.php',
         'App\\Http\\Resources\\UsersLike' => __DIR__ . '/../..' . '/app/Http/Resources/UsersLike.php',
         'App\\Http\\Resources\\Vote' => __DIR__ . '/../..' . '/app/Http/Resources/Vote.php',
         'App\\Industry' => __DIR__ . '/../..' . '/app/Industry.php',
@@ -652,14 +665,18 @@ class ComposerStaticInitac01ac85d836958c79afed6f306fad58
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rate' => __DIR__ . '/../..' . '/app/Rate.php',
-        'App\\ReadStatus' => __DIR__ . '/../..' . '/app/ReadStatus.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Session' => __DIR__ . '/../..' . '/app/Session.php',
+        'App\\Shopping' => __DIR__ . '/../..' . '/app/Shopping.php',
+        'App\\ShoppingList' => __DIR__ . '/../..' . '/app/ShoppingList.php',
         'App\\Sponsor' => __DIR__ . '/../..' . '/app/Sponsor.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\UsersLike' => __DIR__ . '/../..' . '/app/UsersLike.php',
         'App\\Viber' => __DIR__ . '/../..' . '/app/Viber.php',
         'App\\Vote' => __DIR__ . '/../..' . '/app/Vote.php',
+        'Berkayk\\OneSignal\\OneSignalClient' => __DIR__ . '/..' . '/berkayk/onesignal-laravel/src/OneSignalClient.php',
+        'Berkayk\\OneSignal\\OneSignalFacade' => __DIR__ . '/..' . '/berkayk/onesignal-laravel/src/OneSignalFacade.php',
+        'Berkayk\\OneSignal\\OneSignalServiceProvider' => __DIR__ . '/..' . '/berkayk/onesignal-laravel/src/OneSignalServiceProvider.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
