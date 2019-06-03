@@ -204,7 +204,7 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Vote::class,'user_id');
     }
-    
+
     public function read_status()
       {
           return $this->belongsToMany(Post::class,'read_status','author_id','post_id');

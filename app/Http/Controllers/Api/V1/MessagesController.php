@@ -35,11 +35,17 @@ class MessagesController extends Controller
         ));
     }
 
-    public function SendPush($id){
-      \OneSignal::sendNotificationToUser(
-      "Some Message",
-      $userId = $id
-      );
+    public function PushNotification($id){
+  $message = 'Some test Text';
+  $userId = $id;
+  $params = [];
+  $params['include_external_user_ids'] = array($userId);
+  $contents = [
+     "en" => $message
+  ];
+  $params['contents'] = $contents;
+
+  \OneSignal::sendNotificationCustom($params);
 
     }
     public function notifiUnRead()
@@ -167,6 +173,16 @@ class MessagesController extends Controller
             'author_id' => $auth->id
         ]);
 
+        $userId = $request->friend_id;
+        $params = [];
+        $params['include_external_user_ids'] = array($userId);
+        $contents = [
+           "en" => $request->body
+        ];
+        $params['contents'] = $contents;
+
+        \OneSignal::sendNotificationCustom($params);
+
         return $message;
 
     }
@@ -192,6 +208,8 @@ class MessagesController extends Controller
             'author_id' => $auth->id
         ]);
 
+        $users_in_group = User::where('scopeOfGroup', $request->group_id)->get();
+        return dd($users_in_group);
         return $message;
 
     }

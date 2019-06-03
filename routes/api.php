@@ -7,7 +7,7 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:api'], 'namespace' => 'A
 
     Route::get('notifi-posts', 'UsersController@localnotifiUnRead');
 
-    Route::post('push/{id}', 'MessagesController@SendPush');
+    Route::post('push-notification/{id}', 'MessagesController@PushNotification');
 
     Route::get('shopping-lists', 'ShoppingListsController@index');
     Route::get('shopping-lists/{id}', 'ShoppingListsController@show');
