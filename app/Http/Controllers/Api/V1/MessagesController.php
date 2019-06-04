@@ -6,6 +6,7 @@ use Auth;
 use App\User;
 use App\Viber;
 use App\Message;
+use App\Group;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Message as MessageResource;
 use App\Http\Requests\Admin\StoreMessagesRequest;
@@ -172,12 +173,12 @@ class MessagesController extends Controller
             'friend_id' => $request->friend_id,
             'author_id' => $auth->id
         ]);
-
+        $body = $auth->name.':  '.$request->body;
         $userId = $request->friend_id;
         $params = [];
         $params['include_external_user_ids'] = array($userId);
         $contents = [
-           "en" => $request->body
+           "en" => $body
         ];
         $params['contents'] = $contents;
 
@@ -207,9 +208,19 @@ class MessagesController extends Controller
             'group_id' => $request->group_id,
             'author_id' => $auth->id
         ]);
+        $group = Group::findOrFail($request->group_id);
+        $users_in_group = $group->joined()->get()->pluck('id');
+        $body = $auth->name.' in '.$group->name.' chat:  '.$request->body;
+        $params = [];
+        $params['include_external_user_ids'] = array($users_in_group);
+        $contents = [
+           "en" => $body
+        ];
+        $params['contents'] = $contents;
 
-        $users_in_group = User::where('scopeOfGroup', $request->group_id)->get();
-        return dd($users_in_group);
+        \OneSignal::sendNotificationCustom($params);
+
+        //return dd($users_in_group);
         return $message;
 
     }
