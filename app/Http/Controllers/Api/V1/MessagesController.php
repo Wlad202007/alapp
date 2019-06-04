@@ -110,6 +110,7 @@ class MessagesController extends Controller
                     'author'=> $msg->author,
                     'body'=> $msg->body,
                     'time'=> $msg->created_at,
+                    'read'=> $msg->read
                 ];
             }elseif($msg->author_id == $auth_id){
                 $array[$msg->friend_id] = [
@@ -117,6 +118,7 @@ class MessagesController extends Controller
                     'author'=> $msg->friend,
                     'body'=> $msg->body,
                     'time'=> $msg->created_at,
+                    'read'=> $msg->read
                 ];
             }
 
